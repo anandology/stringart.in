@@ -16,5 +16,3 @@ Take a point and connect to every other point.
 Repeat it on every other point.
 
 ![](images/mystic-rose-step2.svg){.stringart-step}
-
-Remember 
