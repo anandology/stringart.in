@@ -1,0 +1,44 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "String Art",
+    "section": "",
+    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites."
+  },
+  {
+    "objectID": "patterns/mystic-rose.html",
+    "href": "patterns/mystic-rose.html",
+    "title": "Mystic Rose",
+    "section": "",
+    "text": "Start with a 9-point circle.\n\nTake a point and connect to every other point.\n\nRepeat it on every other point.\n\nRemember"
+  },
+  {
+    "objectID": "resouces.html",
+    "href": "resouces.html",
+    "title": "Resources",
+    "section": "",
+    "text": "Resources\nHere are some resources if you want to learn more about string art.\n\n\nCurve Stitching: Art of Sewing Beautiful Mathematical Patterns by Jon Millington"
+  },
+  {
+    "objectID": "buy.html",
+    "href": "buy.html",
+    "title": "Buy a Kit",
+    "section": "",
+    "text": "Interested to buy String Art?\nCurrently, we sell the String Art kits only in India. Please share your email address below and we’ll get in touch with you for the next steps.\n[TODO: email form]"
+  },
+  {
+    "objectID": "patterns/index.html",
+    "href": "patterns/index.html",
+    "title": "String Art Patterns",
+    "section": "",
+    "text": "Explore various patterns that you can make with string art!\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThe Cardoid\n\n\n\n\n\n\n\n\n\n\n\n\n\nDewdrop\n\n\n\n\n\n\n\n\n\n\n\n\n\nThe Double Ring\n\n\n\n\n\n\n\n\n\n\n\n\n\nMystic Rose\n\n\n\n\n\n\n\n\n\n\n\n\n\nThe Radial\n\n\n\n\n\n\n\n\n\n\n\n\n\nThe Ring\n\n\n\n\n\n\n\n\n\n\n\n\n\nThe Wheel\n\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site"
+  }
+]
