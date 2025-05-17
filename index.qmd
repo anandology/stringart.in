@@ -1,7 +1,28 @@
 ---
-title: "String Art"
+title: "The Joy of String Art"
+page-layout: custom
+
+format:
+  html:
+    template-partials:
+      - _theme/hero/title-block.html
+
+buttons:
+    - text: Explore Patterns
+      href: /patterns/
+      class: secondary
+    - text: Buy a Kit
+      href: /buy.html
+      class: primary
+
+# hero-background-image: images/banner.jpg
+hero-background-color: "#f2e6cc"
+hero-color: black
 ---
 
-This is a Quarto website.
+::: {.container}
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+String Art is a craft of making gemetric patterns by connecting dots. While it is very easy to get started, if you look at a level deeper, you can see it is highly mathematical and algorithmic. [Read more...](/about.qmd)
+
+
+:::

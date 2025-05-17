@@ -1,0 +1,11 @@
+---
+title: Buy a Kit
+---
+
+Interested to buy String Art?
+
+Please place an order by filling the form below and we'll get in touch with you to process your order.
+
+[Place an Order](https://docs.google.com/forms/d/e/1FAIpQLScBqhwCT9R5PlL98couxFWTAwq4uZeJ9SB_0sMn_XzqlvdBfA/viewform?usp=header){.btn .btn-primary}
+
+

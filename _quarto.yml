@@ -9,6 +9,8 @@ website:
         text: Home
       - href: patterns/index.qmd
         text: Patterns
+      - href: buy.qmd
+        text: Buy a Kit
       - about.qmd
 
 format:

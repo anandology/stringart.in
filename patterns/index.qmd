@@ -2,7 +2,13 @@
 title: String Art Patterns
 listing:
   contents:
-    - "*.qmd"
+    - radial.qmd
+    - wheel.qmd
+    - mystic-rose.qmd
+    - ring.qmd
+    - double-ring.qmd
+    - dewdrop.qmd
+    - cardoid.qmd
   type: grid
   sort:
     - "date desc"
