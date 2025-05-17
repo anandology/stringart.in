@@ -1,0 +1,6 @@
+---
+title: The Ring
+image: images/ring.svg
+---
+
+![](images/ring.svg){.stringart}

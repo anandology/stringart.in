@@ -1,0 +1,6 @@
+---
+title: The Cardoid
+image: images/cardoid.svg
+---
+
+![](images/cardoid.svg){.stringart}

@@ -1,0 +1,7 @@
+---
+title: Dewdrop
+image: images/dewdrop.svg
+---
+
+
+![](images/dewdrop.svg){.stringart}

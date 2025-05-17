@@ -1,0 +1,21 @@
+---
+title: String Art Patterns
+listing:
+  contents:
+    - "*.qmd"
+  type: grid
+  sort:
+    - "date desc"
+  page-size: 96
+  image-height: "300px"
+  fields:
+    - image
+    - title
+format:
+  html:
+    page-layout: full
+    body-classes: patterns
+---
+
+
+Explore various patterns that you can make with string art!

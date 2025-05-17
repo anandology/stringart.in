@@ -1,0 +1,6 @@
+---
+title: The Radial
+image: images/radial.svg
+---
+
+![](images/radial.svg){.stringart}

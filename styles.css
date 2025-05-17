@@ -1,1 +1,21 @@
 /* css styles */
+body.patterns .quarto-grid-item p.card-img-top > img {
+    object-fit: contain !important;
+}
+
+body.patterns .card-title {
+    text-align: center !important;
+}
+
+body.patterns .card-attributions {
+    display: none;
+}
+
+.stringart {
+    border: 5px solid #222;
+}
+
+.stringart-step {
+    border: 2px solid #666;
+    width: 250px;
+}

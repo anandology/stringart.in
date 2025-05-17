@@ -1,0 +1,6 @@
+---
+title: The Double Ring
+image: images/double-ring.svg
+---
+
+![](images/double-ring.svg){.stringart}

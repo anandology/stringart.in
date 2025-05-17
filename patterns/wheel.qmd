@@ -1,0 +1,6 @@
+---
+title: The Wheel
+image: images/wheel.svg
+---
+
+![](images/wheel.svg){.stringart}

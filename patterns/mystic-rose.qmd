@@ -1,0 +1,20 @@
+---
+title: Mystic Rose
+image: images/mystic-rose.svg
+---
+
+![](images/mystic-rose.svg){.stringart}
+
+Start with a 9-point circle.
+
+![](images/mystic-rose-step0.svg){.stringart-step}
+
+Take a point and connect to every other point.
+
+![](images/mystic-rose-step1.svg){.stringart-step}
+
+Repeat it on every other point.
+
+![](images/mystic-rose-step2.svg){.stringart-step}
+
+Remember 
