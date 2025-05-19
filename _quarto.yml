@@ -11,6 +11,7 @@ website:
         text: Patterns
       - href: buy.qmd
         text: Buy a Kit
+      - contact.qmd
       - about.qmd
 
 format:
