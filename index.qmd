@@ -15,6 +15,7 @@ buttons:
       href: /buy.html
       class: primary
 
+title-image: images/stringart-logo.png
 # hero-background-image: images/banner.jpg
 hero-background-color: "#f2e6cc"
 hero-color: black

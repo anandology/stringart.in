@@ -7,12 +7,19 @@
 }
 .hero-content {
     height: 100%;
-    padding: 6rem 0 !important;
+    /* padding: 6rem 0 !important; */
+    padding: 3rem 0 !important;
 }
 
 .hero h1 {
     font-size: 3rem;
     font-weight: 700;
+}
+
+@media (max-width: 767.98px) {
+    .hero h1 {
+        font-size: 2rem;
+    }
 }
 
 .hero .subtitle {
@@ -46,4 +53,8 @@ body.patterns .card-attributions {
 .stringart-step {
     border: 2px solid #666;
     width: 250px;
+}
+
+.hero-image img {
+    max-width: 250px;
 }

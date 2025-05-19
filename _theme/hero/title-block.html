@@ -1,5 +1,10 @@
 <div class="hero">
   <div class="hero-content">
+    $if(title-image)$
+    <div class="hero-image">
+      <img src="$title-image$">
+    </div>
+    $endif$
     <h1 class="title">$title$</h1>
     $if(subtitle)$
     <p class="lead subtitle">$subtitle$</p>
