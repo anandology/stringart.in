@@ -7,11 +7,11 @@
     "text": "Start with a 9-point circle.\n\nTake a point and connect to every other point.\n\nRepeat it on every other point."
   },
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
+    "objectID": "contact.html",
+    "href": "contact.html",
+    "title": "Contact Us",
     "section": "",
-    "text": "String Art is a craft of making gemetric patterns by connecting dots, typically around a circle or a square.\nThe String Art is a topic which can be approached on many different levels. First and foremost, it is a craft which is accessible to young children and it can be enjoyed without a need to understand the mathematical foundations. Interesting patterns can be created with simple rules and it is joy to see these patterns emerge.\nIf we look a level deeper, it is essentially mathematical activity. Why does a parabola emerge from just straight lines? There are many interesting questions that can be pondered about and quickly try out different ideas, with hand.\nIf you look at even a level deeper, string art is programming. You are literally executing a for loop by hand. A doubly nested loop if you are connecting every poing to every other point as in Mystic Rose. There are multiple ways to do the looping. One way is to go back to the starting point or the next point from the back after connecting two points. This leaves usually similar pattern in the back side. There is another way that uses far less thread and often leaves, just the outline around the circle in the back. These are explorations in algorithms. It opens up by interesting challenges if you have a keen eye.\nThis website is little effort to spread the joy of string art."
+    "text": "Contact Us\nYou can contact us on email at mailto:hello@stringart.in. We usually respond back in a day."
   },
   {
     "objectID": "buy.html",
@@ -19,6 +19,13 @@
     "title": "Buy a Kit",
     "section": "",
     "text": "Interested to buy String Art?\nPlease place an order by filling the form below and we’ll get in touch with you to process your order.\nPlace an Order"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "String Art is a craft of making gemetric patterns by connecting dots, typically around a circle or a square.\nThe String Art is a topic which can be approached on many different levels. First and foremost, it is a craft which is accessible to young children and it can be enjoyed without a need to understand the mathematical foundations. Interesting patterns can be created with simple rules and it is joy to see these patterns emerge.\nIf we look a level deeper, it is essentially mathematical activity. Why does a parabola emerge from just straight lines? There are many interesting questions that can be pondered about and quickly try out different ideas, with hand.\nIf you look at even a level deeper, string art is programming. You are literally executing a for loop by hand. A doubly nested loop if you are connecting every poing to every other point as in Mystic Rose. There are multiple ways to do the looping. One way is to go back to the starting point or the next point from the back after connecting two points. This leaves usually similar pattern in the back side. There is another way that uses far less thread and often leaves, just the outline around the circle in the back. These are explorations in algorithms. It opens up by interesting challenges if you have a keen eye.\nThis website is little effort to spread the joy of string art."
   },
   {
     "objectID": "patterns/index.html",
