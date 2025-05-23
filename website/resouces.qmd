@@ -1,0 +1,15 @@
+# Resources
+
+Here are some resources if you want to learn more about string art.
+
+---
+
+[![](https://covers.openlibrary.org/b/id/701627-M.jpg)][1]
+
+
+[Curve Stitching: Art of Sewing Beautiful Mathematical Patterns][1]
+by Jon Millington
+
+[1]: https://openlibrary.org/books/OL8292441M/Curve_Stitching
+
+---

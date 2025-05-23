@@ -11,3 +11,4 @@ If we look a level deeper, it is essentially mathematical activity. Why does a p
 If you look at even a level deeper, string art is programming. You are literally executing a for loop by hand. A doubly nested loop if you are connecting every poing to every other point as in [Mystic Rose](patterns/mystic-rose.qmd). There are multiple ways to do the looping. One way is to go back to the starting point or the next point from the back after connecting two points. This leaves usually similar pattern in the back side. There is another way that uses far less thread and often leaves, just the outline around the circle in the back. These are explorations in algorithms. It opens up by interesting challenges if you have a keen eye.
 
 This website is little effort to spread the joy of string art.
+

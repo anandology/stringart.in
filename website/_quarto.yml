@@ -4,6 +4,7 @@ project:
 website:
   title: "The Joy of String Art"
   navbar:
+    background: light
     left:
       - href: index.qmd
         text: Home
