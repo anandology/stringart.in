@@ -1,0 +1,53 @@
+<svg width="300" height="300" viewBox="-150 -150 300 300" fill="none" stroke="black" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g transform="scale(1 -1)">
+  <g transform="scale(1 -1)">
+    <g>
+      <defs>
+        <g id="s-4-VKMo" transform="translate(0 -66.14173228346455)">
+          <line x1="-66.14173228346456" y1="0" x2="66.14173228346456" y2="0" stroke="red" />
+          <g transform="translate(-46.29921259842519 0)">
+            <defs>
+              <g id="s-3-VKMo">
+                <line x1="0" y1="0" x2="0" y2="7.559055118110236" />
+                <circle cx="0" cy="9.448818897637794" r="1.889763779527559" />
+              </g>
+            </defs>
+            <g>
+              <use xlink:href="#s-3-VKMo" />
+              <g transform="translate(13.228346456692913 0)">
+                <use xlink:href="#s-3-VKMo" />
+                <g transform="translate(13.228346456692913 0)">
+                  <use xlink:href="#s-3-VKMo" />
+                  <g transform="translate(13.228346456692913 0)">
+                    <use xlink:href="#s-3-VKMo" />
+                    <g transform="translate(13.228346456692913 0)">
+                      <use xlink:href="#s-3-VKMo" />
+                      <g transform="translate(13.228346456692913 0)">
+                        <use xlink:href="#s-3-VKMo" />
+                        <g transform="translate(13.228346456692913 0)">
+                          <use xlink:href="#s-3-VKMo" />
+                          <use xlink:href="#s-3-VKMo" transform="translate(13.228346456692913 0)" />
+                        </g>
+                      </g>
+                    </g>
+                  </g>
+                </g>
+              </g>
+            </g>
+          </g>
+        </g>
+      </defs>
+      <g>
+        <use xlink:href="#s-4-VKMo" />
+        <g transform="rotate(90.0)">
+          <use xlink:href="#s-4-VKMo" />
+          <g transform="rotate(90.0)">
+            <use xlink:href="#s-4-VKMo" />
+            <use xlink:href="#s-4-VKMo" transform="rotate(90.0)" />
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</g>
+</svg>

@@ -1,0 +1,68 @@
+<svg width="300" height="300" viewBox="-150 -150 300 300" fill="none" stroke="black" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g transform="scale(1 -1)">
+  <g transform="scale(1 -1)">
+    <g stroke="black" fill="none" stroke-width="0.75" transform="scale(1.1338582677165354 1.1338582677165354)">
+      <circle cx="0" cy="0" r="150" />
+      <g>
+        <defs>
+          <g id="s-1-d97Q" transform="translate(13.636363636363637 0)">
+            <defs>
+              <circle cx="0" cy="0" r="2" id="s-0-d97Q" />
+            </defs>
+            <g>
+              <use xlink:href="#s-0-d97Q" />
+              <g transform="translate(13.636363636363637 0)">
+                <use xlink:href="#s-0-d97Q" />
+                <g transform="translate(13.636363636363637 0)">
+                  <use xlink:href="#s-0-d97Q" />
+                  <g transform="translate(13.636363636363637 0)">
+                    <use xlink:href="#s-0-d97Q" />
+                    <g transform="translate(13.636363636363637 0)">
+                      <use xlink:href="#s-0-d97Q" />
+                      <g transform="translate(13.636363636363637 0)">
+                        <use xlink:href="#s-0-d97Q" />
+                        <g transform="translate(13.636363636363637 0)">
+                          <use xlink:href="#s-0-d97Q" />
+                          <g transform="translate(13.636363636363637 0)">
+                            <use xlink:href="#s-0-d97Q" />
+                            <g transform="translate(13.636363636363637 0)">
+                              <use xlink:href="#s-0-d97Q" />
+                              <use xlink:href="#s-0-d97Q" transform="translate(13.636363636363637 0)" />
+                            </g>
+                          </g>
+                        </g>
+                      </g>
+                    </g>
+                  </g>
+                </g>
+              </g>
+            </g>
+          </g>
+        </defs>
+        <g>
+          <use xlink:href="#s-1-d97Q" />
+          <g transform="rotate(45.0)">
+            <use xlink:href="#s-1-d97Q" />
+            <g transform="rotate(45.0)">
+              <use xlink:href="#s-1-d97Q" />
+              <g transform="rotate(45.0)">
+                <use xlink:href="#s-1-d97Q" />
+                <g transform="rotate(45.0)">
+                  <use xlink:href="#s-1-d97Q" />
+                  <g transform="rotate(45.0)">
+                    <use xlink:href="#s-1-d97Q" />
+                    <g transform="rotate(45.0)">
+                      <use xlink:href="#s-1-d97Q" />
+                      <use xlink:href="#s-1-d97Q" transform="rotate(45.0)" />
+                    </g>
+                  </g>
+                </g>
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</g>
+</svg>
