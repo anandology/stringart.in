@@ -35,6 +35,13 @@
     "text": "All payments made are subject to realisation of the same.\nThe payments made by the customer referring this receipt shall under no circumstances be deemed for full & final settlement"
   },
   {
+    "objectID": "patterns/index.html",
+    "href": "patterns/index.html",
+    "title": "String Art Patterns",
+    "section": "",
+    "text": "Explore various patterns that you can make with string art!\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThe Radial\n\n\n\n\n\n\n\n\n\n\n\n\nThe Wheel\n\n\n\n\n\n\n\n\n\n\n\n\nMystic Rose\n\n\n\n\n\n\n\n\n\n\n\n\nThe Ring\n\n\n\n\n\n\n\n\n\n\n\n\nThe Double Ring\n\n\n\n\n\n\n\n\n\n\n\n\nDewdrop\n\n\n\n\n\n\n\n\n\n\n\n\nThe Cardoid\n\n\n\n\n\nNo matching items"
+  },
+  {
     "objectID": "buy.html",
     "href": "buy.html",
     "title": "Buy a Kit",
@@ -61,5 +68,12 @@
     "title": "Contact Us",
     "section": "",
     "text": "Contact Us\nYou can contact us on email at mailto:hello@stringart.in. We usually respond back in a day."
+  },
+  {
+    "objectID": "patterns/mystic-rose.html",
+    "href": "patterns/mystic-rose.html",
+    "title": "Mystic Rose",
+    "section": "",
+    "text": "Start with a 9-point circle.\n\nTake a point and connect to every other point.\n\nRepeat it on every other point."
   }
 ]
