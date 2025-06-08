@@ -1,0 +1,52 @@
+import React from 'react';
+import { ArrowRight } from 'lucide-react';
+
+const patterns = [
+  { name: "Spiral Galaxy", difficulty: "Beginner" },
+  { name: "Geometric Rose", difficulty: "Intermediate" },
+  { name: "Mandala Circle", difficulty: "Advanced" },
+  { name: "Star Burst", difficulty: "Beginner" },
+  { name: "Celtic Knot", difficulty: "Advanced" },
+  { name: "Flower Petals", difficulty: "Intermediate" },
+  { name: "Triangle Mesh", difficulty: "Beginner" },
+  { name: "Heart Shape", difficulty: "Intermediate" }
+];
+
+const GalleryTeaser = () => {
+  return (
+    <section className="py-20 bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-16">
+          <h3 className="text-4xl font-bold text-gray-900 mb-4">Get Inspired</h3>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            Explore mathematical patterns and artistic possibilities. From simple geometric shapes
+            to complex mathematical curves, discover the beauty of string art.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
+          {patterns.map((pattern, index) => (
+            <div key={index} className="group cursor-pointer">
+              <div className="bg-gradient-to-br from-orange-100 to-yellow-100 rounded-xl aspect-square flex items-center justify-center shadow-md group-hover:shadow-lg transition-shadow mb-3">
+                <div className="text-center">
+                  <div className="text-4xl text-orange-600 mb-2">🔗</div>
+                  <div className="text-xs text-gray-600 font-medium">{pattern.difficulty}</div>
+                </div>
+              </div>
+              <h4 className="font-semibold text-gray-900 text-center">{pattern.name}</h4>
+            </div>
+          ))}
+        </div>
+
+        <div className="text-center">
+          <button className="bg-orange-600 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-orange-700 transition-colors shadow-lg inline-flex items-center">
+            View Full Gallery
+            <ArrowRight className="ml-2 h-5 w-5" />
+          </button>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default GalleryTeaser;
