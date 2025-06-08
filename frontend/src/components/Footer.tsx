@@ -5,11 +5,11 @@ const Footer = () => (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="grid md:grid-cols-4 gap-8">
         <div className="col-span-2">
-          <h4 className="text-2xl font-bold text-orange-400 mb-4">StringArt.in</h4>
+          <h4 className="text-2xl font-bold text-orange-400 mb-4">String Art Studio</h4>
           <p className="text-gray-300 mb-6 max-w-md">
-            Bringing families together through the mathematical beauty of string art.
-            Learn, create, and inspire with our thoughtfully designed kits.
-          </p>
+            String Art Studio makes precision-cut kits for creating beautiful geometric patterns.
+
+            Discover the joy of exploring mathematical patterns and symmetry through art.          </p>
           <div className="flex space-x-4">
             <div className="w-10 h-10 bg-orange-600 rounded-full flex items-center justify-center">
               <span className="text-white font-bold">f</span>
@@ -42,7 +42,7 @@ const Footer = () => (
       </div>
 
       <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
-        <p>&copy; 2024 StringArt.in. All rights reserved. Made with ❤️ for creative families.</p>
+        <p>&copy; 2025 String Art Studio. All rights reserved. Made with ❤️ in Bengaluru.</p>
       </div>
     </div>
   </footer>
