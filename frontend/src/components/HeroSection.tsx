@@ -1,5 +1,4 @@
 import React from 'react';
-import { Lightbulb } from 'lucide-react';
 
 const HeroSection = () => (
   <section className="bg-gradient-to-br from-orange-50 to-yellow-50 py-20">
@@ -26,9 +25,9 @@ const HeroSection = () => (
         </div>
         <div className="relative">
           <div className="bg-white rounded-2xl shadow-xl p-8 transform rotate-2 hover:rotate-0 transition-transform duration-300">
-            <div className="aspect-square bg-gradient-to-br from-orange-100 to-yellow-100 rounded-xl flex items-center justify-center">
-              <div className="text-6xl text-orange-400">🧵</div>
-            </div>
+            <div className="aspect-square bg-gradient-to-br from-orange-100 to-yellow-100 rounded-xl flex items-center justify-center p-8">
+  <img src="/stringart-logo.png" alt="String Art Logo" className="w-full h-full object-contain" />
+</div>
           </div>
         </div>
       </div>
