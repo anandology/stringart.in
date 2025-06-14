@@ -3,30 +3,42 @@
   <g transform="scale(1 -1)">
     <g>
       <defs>
-        <g id="s-4-1VWh" transform="translate(0 -38.18694693852644)">
-          <line x1="-66.14173228346456" y1="0" x2="66.14173228346456" y2="0" stroke="red" />
-          <g transform="translate(-38.582677165354326 0)">
+        <g id="s-4-GINu" transform="translate(0 -98.19500641335371)">
+          <line x1="-170.07874015748033" y1="0" x2="170.07874015748033" y2="0" stroke="red" />
+          <g transform="translate(-124.7244094488189 0)">
             <defs>
-              <g id="s-3-1VWh">
-                <line x1="0" y1="0" x2="0" y2="5.669291338582677" />
-                <circle cx="0" cy="7.559055118110236" r="1.889763779527559" />
+              <g id="s-3-GINu">
+                <line x1="0" y1="0" x2="0" y2="11.338582677165354" stroke="black" />
+                <circle cx="0" cy="13.795275590551181" r="2.456692913385827" stroke="black" fill="none" />
               </g>
             </defs>
             <g>
-              <use xlink:href="#s-3-1VWh" />
-              <g transform="translate(11.023622047244094 0)">
-                <use xlink:href="#s-3-1VWh" />
-                <g transform="translate(11.023622047244094 0)">
-                  <use xlink:href="#s-3-1VWh" />
-                  <g transform="translate(11.023622047244094 0)">
-                    <use xlink:href="#s-3-1VWh" />
-                    <g transform="translate(11.023622047244094 0)">
-                      <use xlink:href="#s-3-1VWh" />
-                      <g transform="translate(11.023622047244094 0)">
-                        <use xlink:href="#s-3-1VWh" />
-                        <g transform="translate(11.023622047244094 0)">
-                          <use xlink:href="#s-3-1VWh" />
-                          <use xlink:href="#s-3-1VWh" transform="translate(11.023622047244094 0)" />
+              <use xlink:href="#s-3-GINu" />
+              <g transform="translate(22.67716535433071 0)">
+                <use xlink:href="#s-3-GINu" />
+                <g transform="translate(22.67716535433071 0)">
+                  <use xlink:href="#s-3-GINu" />
+                  <g transform="translate(22.67716535433071 0)">
+                    <use xlink:href="#s-3-GINu" />
+                    <g transform="translate(22.67716535433071 0)">
+                      <use xlink:href="#s-3-GINu" />
+                      <g transform="translate(22.67716535433071 0)">
+                        <use xlink:href="#s-3-GINu" />
+                        <g transform="translate(22.67716535433071 0)">
+                          <use xlink:href="#s-3-GINu" />
+                          <g transform="translate(22.67716535433071 0)">
+                            <use xlink:href="#s-3-GINu" />
+                            <g transform="translate(22.67716535433071 0)">
+                              <use xlink:href="#s-3-GINu" />
+                              <g transform="translate(22.67716535433071 0)">
+                                <use xlink:href="#s-3-GINu" />
+                                <g transform="translate(22.67716535433071 0)">
+                                  <use xlink:href="#s-3-GINu" />
+                                  <use xlink:href="#s-3-GINu" transform="translate(22.67716535433071 0)" />
+                                </g>
+                              </g>
+                            </g>
+                          </g>
                         </g>
                       </g>
                     </g>
@@ -38,10 +50,10 @@
         </g>
       </defs>
       <g>
-        <use xlink:href="#s-4-1VWh" />
+        <use xlink:href="#s-4-GINu" />
         <g transform="rotate(120.0)">
-          <use xlink:href="#s-4-1VWh" />
-          <use xlink:href="#s-4-1VWh" transform="rotate(120.0)" />
+          <use xlink:href="#s-4-GINu" />
+          <use xlink:href="#s-4-GINu" transform="rotate(120.0)" />
         </g>
       </g>
     </g>

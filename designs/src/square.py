@@ -31,6 +31,6 @@ side = line(x1=-size/2, y1=0, x2=size/2, y2=0, stroke="red") | translate(y=y1) |
 
 from _designs import make_polygon, mm
 
-shape = make_polygon(n=4, side_length=35*mm, num_holes=8,
-                     hole_radius=0.5*mm, hole_length=2*mm)
+shape = make_polygon(n=4, side_length=90*mm, num_holes=15,
+                     hole_radius=0.65*mm, hole_length=3*mm, gap_in_steps=2)
 show(shape)

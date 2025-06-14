@@ -1,62 +1,36 @@
 <svg width="300" height="300" viewBox="-150 -150 300 300" fill="none" stroke="black" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g transform="scale(1 -1)">
   <g transform="scale(1 -1)">
-    <g stroke="black" fill="none" stroke-width="0.75" transform="scale(1.1338582677165354 1.1338582677165354)">
-      <g>
-        <defs>
-          <line x1="-75" y1="0" x2="75" y2="0" id="s-2-bxMA" transform="translate(0 129.9038105676658)" />
-        </defs>
-        <g>
-          <use xlink:href="#s-2-bxMA" />
-          <g transform="rotate(60)">
-            <use xlink:href="#s-2-bxMA" />
-            <g transform="rotate(60)">
-              <use xlink:href="#s-2-bxMA" />
-              <g transform="rotate(60)">
-                <use xlink:href="#s-2-bxMA" />
-                <g transform="rotate(60)">
-                  <use xlink:href="#s-2-bxMA" />
-                  <use xlink:href="#s-2-bxMA" transform="rotate(60)" />
-                </g>
-              </g>
-            </g>
-          </g>
-        </g>
-      </g>
-      <g>
-        <defs>
-          <g id="s-1-bxMA" transform="translate(-63.46153846153846 122.9038105676658)">
+    <g>
+      <defs>
+        <g id="s-1-9G3b" transform="translate(0 -147.29250962003053)">
+          <line x1="-85.03937007874016" y1="0" x2="85.03937007874016" y2="0" stroke="red" />
+          <g transform="translate(-66.55255049640535 0)">
             <defs>
-              <g id="s-0-bxMA">
-                <circle cx="0" cy="0" r="2" />
-                <line x1="0" y1="2" x2="0" y2="7" />
+              <g id="s-0-9G3b">
+                <line x1="0" y1="0" x2="0" y2="11.338582677165354" stroke="black" />
+                <circle cx="0" cy="13.795275590551181" r="2.456692913385827" stroke="black" fill="none" />
               </g>
             </defs>
             <g>
-              <use xlink:href="#s-0-bxMA" />
-              <g transform="translate(11.538461538461538 0)">
-                <use xlink:href="#s-0-bxMA" />
-                <g transform="translate(11.538461538461538 0)">
-                  <use xlink:href="#s-0-bxMA" />
-                  <g transform="translate(11.538461538461538 0)">
-                    <use xlink:href="#s-0-bxMA" />
-                    <g transform="translate(11.538461538461538 0)">
-                      <use xlink:href="#s-0-bxMA" />
-                      <g transform="translate(11.538461538461538 0)">
-                        <use xlink:href="#s-0-bxMA" />
-                        <g transform="translate(11.538461538461538 0)">
-                          <use xlink:href="#s-0-bxMA" />
-                          <g transform="translate(11.538461538461538 0)">
-                            <use xlink:href="#s-0-bxMA" />
-                            <g transform="translate(11.538461538461538 0)">
-                              <use xlink:href="#s-0-bxMA" />
-                              <g transform="translate(11.538461538461538 0)">
-                                <use xlink:href="#s-0-bxMA" />
-                                <g transform="translate(11.538461538461538 0)">
-                                  <use xlink:href="#s-0-bxMA" />
-                                  <use xlink:href="#s-0-bxMA" transform="translate(11.538461538461538 0)" />
-                                </g>
-                              </g>
+              <use xlink:href="#s-0-9G3b" />
+              <g transform="translate(14.789455665867854 0)">
+                <use xlink:href="#s-0-9G3b" />
+                <g transform="translate(14.789455665867854 0)">
+                  <use xlink:href="#s-0-9G3b" />
+                  <g transform="translate(14.789455665867854 0)">
+                    <use xlink:href="#s-0-9G3b" />
+                    <g transform="translate(14.789455665867854 0)">
+                      <use xlink:href="#s-0-9G3b" />
+                      <g transform="translate(14.789455665867854 0)">
+                        <use xlink:href="#s-0-9G3b" />
+                        <g transform="translate(14.789455665867854 0)">
+                          <use xlink:href="#s-0-9G3b" />
+                          <g transform="translate(14.789455665867854 0)">
+                            <use xlink:href="#s-0-9G3b" />
+                            <g transform="translate(14.789455665867854 0)">
+                              <use xlink:href="#s-0-9G3b" />
+                              <use xlink:href="#s-0-9G3b" transform="translate(14.789455665867854 0)" />
                             </g>
                           </g>
                         </g>
@@ -67,19 +41,19 @@
               </g>
             </g>
           </g>
-        </defs>
-        <g>
-          <use xlink:href="#s-1-bxMA" />
+        </g>
+      </defs>
+      <g>
+        <use xlink:href="#s-1-9G3b" />
+        <g transform="rotate(60.0)">
+          <use xlink:href="#s-1-9G3b" />
           <g transform="rotate(60.0)">
-            <use xlink:href="#s-1-bxMA" />
+            <use xlink:href="#s-1-9G3b" />
             <g transform="rotate(60.0)">
-              <use xlink:href="#s-1-bxMA" />
+              <use xlink:href="#s-1-9G3b" />
               <g transform="rotate(60.0)">
-                <use xlink:href="#s-1-bxMA" />
-                <g transform="rotate(60.0)">
-                  <use xlink:href="#s-1-bxMA" />
-                  <use xlink:href="#s-1-bxMA" transform="rotate(60.0)" />
-                </g>
+                <use xlink:href="#s-1-9G3b" />
+                <use xlink:href="#s-1-9G3b" transform="rotate(60.0)" />
               </g>
             </g>
           </g>
