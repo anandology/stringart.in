@@ -29,7 +29,7 @@ var listProductsCmd = &cobra.Command{
 	Short: "List all products",
 	Run: func(cmd *cobra.Command, args []string) {
 		app := NewApp()
-		products, err := app.ListProducts()
+		products, err := app.db.ListProducts()
 		if err != nil {
 			fmt.Printf("Error: %v\n", err)
 			os.Exit(1)
@@ -60,7 +60,7 @@ var loadProductsCmd = &cobra.Command{
 		filename := args[0]
 
 		fmt.Printf("Loading products from %s...\n", filename)
-		err := app.LoadProducts(filename)
+		err := app.db.LoadProducts(filename)
 		if err != nil {
 			fmt.Printf("Error: %v\n", err)
 			os.Exit(1)

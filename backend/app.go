@@ -4,11 +4,10 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"strconv"
 	"time"
 
 	"github.com/gin-gonic/gin"
-	"github.com/jmoiron/sqlx"
-	_ "github.com/mattn/go-sqlite3"
 )
 
 type CreateOrderRequest struct {
@@ -17,11 +16,11 @@ type CreateOrderRequest struct {
 }
 
 type App struct {
-	db *sqlx.DB
+	db *Database
 }
 
 func NewApp() *App {
-	db, err := sqlx.Connect("sqlite3", "stringart.db")
+	db, err := NewDatabase("stringart.db")
 	if err != nil {
 		log.Fatalf("error connecting to DB: %v", err)
 	}
@@ -30,8 +29,7 @@ func NewApp() *App {
 
 // Product handlers
 func (app *App) GetProducts(c *gin.Context) {
-	var products []Product
-	err := app.db.Select(&products, "SELECT * FROM products WHERE active = true")
+	products, err := app.db.ListProducts()
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
@@ -40,8 +38,13 @@ func (app *App) GetProducts(c *gin.Context) {
 }
 
 func (app *App) GetProduct(c *gin.Context) {
-	var product Product
-	err := app.db.Get(&product, "SELECT * FROM products WHERE id = ? AND active = true", c.Param("id"))
+	idStr := c.Param("id")
+	id, err := strconv.Atoi(idStr)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid product ID"})
+		return
+	}
+	product, err := app.db.GetProduct(id)
 	if err != nil {
 		c.JSON(http.StatusNotFound, gin.H{"error": "Product not found"})
 		return
@@ -57,19 +60,10 @@ func (app *App) PostOrder(c *gin.Context) {
 		return
 	}
 
-	// Start transaction
-	tx, err := app.db.Beginx()
-	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to start transaction"})
-		return
-	}
-	defer tx.Rollback()
-
 	// Calculate total amount and validate products
 	var totalAmount float64
 	for _, item := range req.Items {
-		var product Product
-		err := tx.Get(&product, "SELECT * FROM products WHERE id = ? AND active = true", item.ProductID)
+		product, err := app.db.GetProduct(item.ProductID)
 		if err != nil {
 			c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid product ID"})
 			return
@@ -79,48 +73,23 @@ func (app *App) PostOrder(c *gin.Context) {
 
 	// Create order
 	now := time.Now()
-	result, err := tx.Exec(`
-		INSERT INTO orders (total_amount, payment_done, payment_received, created_at, updated_at)
-		VALUES (?, false, false, ?, ?)`,
-		totalAmount, now, now)
+	orderID, err := app.db.CreateOrder(totalAmount, now)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to create order"})
 		return
 	}
 
-	orderID, err := result.LastInsertId()
-	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to get order ID"})
-		return
-	}
-
 	// Insert order items
 	for _, item := range req.Items {
-		_, err := tx.Exec(`
-			INSERT INTO order_items (order_id, product_id, price, quantity)
-			VALUES (?, ?, ?, ?)`,
-			orderID, item.ProductID, item.Price, item.Quantity)
-		if err != nil {
+		if err := app.db.AddOrderItem(orderID, item.ProductID, item.Price, item.Quantity); err != nil {
 			c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to create order items"})
 			return
 		}
 	}
 
 	// Insert shipping address
-	_, err = tx.Exec(`
-		INSERT INTO shipping_addresses (order_id, name, street, city, state, pincode, phone)
-		VALUES (?, ?, ?, ?, ?, ?, ?)`,
-		orderID, req.ShippingAddress.Name, req.ShippingAddress.Street,
-		req.ShippingAddress.City, req.ShippingAddress.State,
-		req.ShippingAddress.Pincode, req.ShippingAddress.Phone)
-	if err != nil {
+	if err := app.db.AddShippingAddress(orderID, req.ShippingAddress); err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to create shipping address"})
-		return
-	}
-
-	// Commit transaction
-	if err := tx.Commit(); err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to commit transaction"})
 		return
 	}
 
@@ -137,23 +106,15 @@ func (app *App) PostOrder(c *gin.Context) {
 
 func (app *App) PutOrderPaymentDone(c *gin.Context) {
 	now := time.Now()
-	result, err := app.db.Exec(`
-		UPDATE orders 
-		SET payment_done = true, payment_done_at = ?, updated_at = ?
-		WHERE id = ?`,
-		now, now, c.Param("id"))
+	idStr := c.Param("id")
+	id, err := strconv.Atoi(idStr)
 	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid order ID"})
 		return
 	}
-
-	rows, err := result.RowsAffected()
+	err = app.db.UpdateOrderPaymentDone(id, now)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
-		return
-	}
-	if rows == 0 {
-		c.JSON(http.StatusNotFound, gin.H{"error": "Order not found"})
 		return
 	}
 
@@ -161,22 +122,25 @@ func (app *App) PutOrderPaymentDone(c *gin.Context) {
 }
 
 func (app *App) GetOrder(c *gin.Context) {
-	var order Order
-	err := app.db.Get(&order, "SELECT * FROM orders WHERE id = ?", c.Param("id"))
+	idStr := c.Param("id")
+	id, err := strconv.Atoi(idStr)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid order ID"})
+		return
+	}
+	order, err := app.db.GetOrder(id)
 	if err != nil {
 		c.JSON(http.StatusNotFound, gin.H{"error": "Order not found"})
 		return
 	}
 
-	var items []OrderItem
-	err = app.db.Select(&items, "SELECT * FROM order_items WHERE order_id = ?", order.ID)
+	items, err := app.db.GetOrderItems(order.ID)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
 	}
 
-	var address ShippingAddress
-	err = app.db.Get(&address, "SELECT * FROM shipping_addresses WHERE order_id = ?", order.ID)
+	address, err := app.db.GetShippingAddress(order.ID)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return

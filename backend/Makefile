@@ -1,6 +1,6 @@
 # Default rule
 run: build
-	./backend
+	./backend server
 
 build:
 	go build -o backend 
