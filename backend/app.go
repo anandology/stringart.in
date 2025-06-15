@@ -153,18 +153,30 @@ func (app *App) GetOrder(c *gin.Context) {
 	})
 }
 
+// Add new method for root route
+func (app *App) GetHome(c *gin.Context) {
+	c.JSON(http.StatusOK, gin.H{"app": "StringArt"})
+}
+
+func (app *App) SetupRoutes(r *gin.Engine) {
+	// Root route
+	r.GET("/", app.GetHome)
+
+	// Products API
+	r.GET("/products", app.GetProducts)
+	r.GET("/products/:id", app.GetProduct)
+
+	// Orders API
+	r.POST("/orders", app.PostOrder)
+	r.PUT("/aorders/:id/payment-done", app.PutOrderPaymentDone)
+	r.GET("/orders/:id", app.GetOrder)
+}
+
 func runServer(port string) {
 	app := NewApp()
 	r := gin.Default()
 
-	// Products API
-	r.GET("/api/products", app.GetProducts)
-	r.GET("/api/products/:id", app.GetProduct)
-
-	// Orders API
-	r.POST("/api/orders", app.PostOrder)
-	r.PUT("/api/orders/:id/payment-done", app.PutOrderPaymentDone)
-	r.GET("/api/orders/:id", app.GetOrder)
+	app.SetupRoutes(r)
 
 	r.Run(":" + port)
 }
