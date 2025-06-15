@@ -11,8 +11,13 @@ import (
 )
 
 type CreateOrderRequest struct {
-	Items           []OrderItem     `json:"items"`
-	ShippingAddress ShippingAddress `json:"shipping_address"`
+	Items           []OrderItemRequest `json:"items"`
+	ShippingAddress ShippingAddress    `json:"shipping_address"`
+}
+
+type OrderItemRequest struct {
+	Product  string `json:"product"`
+	Quantity int    `json:"quantity"`
 }
 
 type App struct {
@@ -63,9 +68,9 @@ func (app *App) PostOrder(c *gin.Context) {
 	// Calculate total amount and validate products
 	var totalAmount float64
 	for _, item := range req.Items {
-		product, err := app.db.GetProduct(item.ProductID)
+		product, err := app.db.GetProductByKey(item.Product)
 		if err != nil {
-			c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid product ID"})
+			c.JSON(http.StatusBadRequest, gin.H{"error": fmt.Sprintf("Invalid product key: %s", item.Product)})
 			return
 		}
 		totalAmount += product.Price * float64(item.Quantity)
@@ -81,7 +86,8 @@ func (app *App) PostOrder(c *gin.Context) {
 
 	// Insert order items
 	for _, item := range req.Items {
-		if err := app.db.AddOrderItem(orderID, item.ProductID, item.Price, item.Quantity); err != nil {
+		product, _ := app.db.GetProductByKey(item.Product) // We already validated this above
+		if err := app.db.AddOrderItem(orderID, product.ID, product.Price, item.Quantity); err != nil {
 			c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to create order items"})
 			return
 		}

@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"strings"
 
 	"github.com/olekukonko/tablewriter"
 	"github.com/spf13/cobra"
@@ -70,11 +71,48 @@ var loadProductsCmd = &cobra.Command{
 	},
 }
 
+var listOrdersCmd = &cobra.Command{
+	Use:   "list-orders",
+	Short: "List all orders",
+	Run: func(cmd *cobra.Command, args []string) {
+		app := NewApp()
+		orders, err := app.db.ListOrders()
+		if err != nil {
+			fmt.Printf("Error: %v\n", err)
+			os.Exit(1)
+		}
+
+		data := [][]string{}
+
+		for _, o := range orders {
+			// Format products string
+			products := make([]string, len(o.Items))
+			for i, item := range o.Items {
+				products[i] = fmt.Sprintf("%s x %d", item.ProductKey, item.Quantity)
+			}
+			productsStr := strings.Join(products, ", ")
+
+			data = append(data, []string{
+				fmt.Sprintf("%d", o.ID),
+				o.CreatedAt.Format("2006-01-02 15:04:05"),
+				fmt.Sprintf("₹%.2f", o.TotalAmount),
+				o.Name,
+				productsStr})
+		}
+		// Create table using new tablewriter API
+		table := tablewriter.NewTable(os.Stdout)
+		table.Header("ID", "Date", "Amount", "Customer", "Products")
+		table.Bulk(data)
+		table.Render()
+	},
+}
+
 func init() {
 	serverCmd.Flags().StringP("port", "p", "8080", "Port to run the server on")
 	rootCmd.AddCommand(serverCmd)
 	rootCmd.AddCommand(listProductsCmd)
 	rootCmd.AddCommand(loadProductsCmd)
+	rootCmd.AddCommand(listOrdersCmd)
 }
 
 func main() {

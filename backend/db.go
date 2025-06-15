@@ -62,6 +62,18 @@ type Order struct {
 	UpdatedAt         time.Time      `json:"updated_at" db:"updated_at"`
 }
 
+type OrderWithShipping struct {
+	Order
+	ShippingAddress
+	Items []OrderItemWithProduct `db:"-"`
+}
+
+type OrderItemWithProduct struct {
+	OrderItem
+	ProductKey  string `db:"product_key"`
+	ProductName string `db:"product_name"`
+}
+
 // YAML structures for loading products
 type ProductYAML struct {
 	Key         string  `yaml:"key"`
@@ -73,6 +85,11 @@ type ProductYAML struct {
 
 type ProductsYAML struct {
 	Products []ProductYAML `yaml:"products"`
+}
+
+// GetShippingAddress returns the shipping address for this order
+func (o *Order) GetShippingAddress(db *Database) (*ShippingAddress, error) {
+	return db.GetShippingAddress(o.ID)
 }
 
 func (db *Database) ListProducts() ([]Product, error) {
@@ -90,6 +107,15 @@ func (db *Database) ListProducts() ([]Product, error) {
 func (db *Database) GetProduct(id int) (*Product, error) {
 	var product Product
 	err := db.db.Get(&product, "SELECT * FROM products WHERE id = ? AND active = true", id)
+	if err != nil {
+		return nil, fmt.Errorf("error getting product: %v", err)
+	}
+	return &product, nil
+}
+
+func (db *Database) GetProductByKey(key string) (*Product, error) {
+	var product Product
+	err := db.db.Get(&product, "SELECT * FROM products WHERE key = ? AND active = true", key)
 	if err != nil {
 		return nil, fmt.Errorf("error getting product: %v", err)
 	}
@@ -181,4 +207,32 @@ func (db *Database) GetShippingAddress(orderID int) (*ShippingAddress, error) {
 		return nil, fmt.Errorf("error getting shipping address: %v", err)
 	}
 	return &address, nil
+}
+
+func (db *Database) ListOrders() ([]OrderWithShipping, error) {
+	var orders []OrderWithShipping
+	err := db.db.Select(&orders, `
+		SELECT o.*, s.name, s.street, s.city, s.state, s.pincode, s.phone
+		FROM orders o
+		LEFT JOIN shipping_addresses s ON o.id = s.order_id
+		ORDER BY o.id DESC`)
+	if err != nil {
+		return nil, fmt.Errorf("error listing orders: %v", err)
+	}
+
+	// Fetch order items for each order
+	for i := range orders {
+		var items []OrderItemWithProduct
+		err := db.db.Select(&items, `
+			SELECT oi.product_id, oi.price, oi.quantity, p.key as product_key, p.name as product_name
+			FROM order_items oi
+			JOIN products p ON oi.product_id = p.id
+			WHERE oi.order_id = ?`, orders[i].ID)
+		if err != nil {
+			return nil, fmt.Errorf("error getting order items: %v", err)
+		}
+		orders[i].Items = items
+	}
+
+	return orders, nil
 }
