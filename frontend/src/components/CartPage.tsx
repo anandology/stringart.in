@@ -123,9 +123,12 @@ const CartPage: React.FC = () => {
                                     </div>
                                 </div>
                             </div>
-                            <button className="w-full bg-orange-600 text-white py-3 rounded-lg font-semibold hover:bg-orange-700 transition-colors mb-4">
+                            <Link
+                                to="/checkout"
+                                className="block w-full bg-orange-600 text-white py-3 rounded-lg font-semibold hover:bg-orange-700 transition-colors mb-4 text-center"
+                            >
                                 Proceed to Checkout
-                            </button>
+                            </Link>
                             <Link
                                 to="/products"
                                 className="block w-full text-center text-orange-600 hover:text-orange-700 font-medium"

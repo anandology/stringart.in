@@ -12,6 +12,7 @@ import GalleryDetailPage from './components/GalleryDetailPage';
 import ProductsPage from './components/ProductsPage';
 import ProductDetailPage from './components/ProductDetailPage';
 import CartPage from './components/CartPage';
+import CheckoutForm from './components/CheckoutForm';
 import { CartProvider } from './components/CartContext';
 
 const ProductsRoute = () => (
@@ -26,6 +27,14 @@ const CartRoute = () => (
   <>
     <Header />
     <CartPage />
+    <Footer />
+  </>
+);
+
+const CheckoutRoute = () => (
+  <>
+    <Header />
+    <CheckoutForm />
     <Footer />
   </>
 );
@@ -71,6 +80,7 @@ const App = () => {
           <Route path="/products" element={<ProductsRoute />} />
           <Route path="/products/:id" element={<ProductDetailRoute />} />
           <Route path="/cart" element={<CartRoute />} />
+          <Route path="/checkout" element={<CheckoutRoute />} />
         </Routes>
       </Router>
     </CartProvider>
