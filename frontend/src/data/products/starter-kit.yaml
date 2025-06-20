@@ -1,0 +1,7 @@
+id: starter-kit
+name: "String Art Starter Kit"
+price: 499
+description: "Everything you need to create your first string art masterpiece. Includes board, nails, threads, and patterns."
+images:
+  - "/images/products/starter-kit-1.jpg"
+  - "/images/products/starter-kit-2.jpg" 

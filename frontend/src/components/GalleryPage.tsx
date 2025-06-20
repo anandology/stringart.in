@@ -1,10 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import gallery from '../gallery.yaml';
 import Header from './Header';
 import Footer from './Footer';
 
-const GalleryPage: React.FC = () => {
+interface GalleryPageProps {
+    gallery: any[];
+}
+
+const GalleryPage: React.FC<GalleryPageProps> = ({ gallery }) => {
     return (
         <>
             <Header />

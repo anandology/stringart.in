@@ -1,0 +1,7 @@
+id: advanced-kit
+name: "String Art Advanced Kit"
+price: 899
+description: "For experienced creators. More patterns, more colors, and advanced tools for intricate designs."
+images:
+  - "/images/products/advanced-kit-1.jpg"
+  - "/images/products/advanced-kit-2.jpg" 

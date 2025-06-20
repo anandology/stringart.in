@@ -1,10 +1,13 @@
 import React from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
-import gallery from '../gallery.yaml';
 import Header from './Header';
 import Footer from './Footer';
 
-const GalleryDetailPage: React.FC = () => {
+interface GalleryDetailPageProps {
+    gallery: any[];
+}
+
+const GalleryDetailPage: React.FC<GalleryDetailPageProps> = ({ gallery }) => {
     const { id } = useParams<{ id: string }>();
     const idx = Number(id);
     const item = gallery[idx];

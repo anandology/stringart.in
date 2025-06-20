@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import HeroSection from './components/HeroSection';
@@ -22,13 +22,23 @@ const Home = () => (
 );
 
 const App = () => {
+  const [appData, setAppData] = useState<any | null>(null);
+
+  useEffect(() => {
+    fetch('/src/data/app.json')
+      .then(res => res.json())
+      .then(setAppData);
+  }, []);
+
+  if (!appData || !appData.gallery) return <div>Loading...</div>;
+
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/get-started" element={<LandingPage />} />
-        <Route path="/gallery" element={<GalleryPage />} />
-        <Route path="/gallery/:id" element={<GalleryDetailPage />} />
+        <Route path="/gallery" element={<GalleryPage gallery={appData.gallery} />} />
+        <Route path="/gallery/:id" element={<GalleryDetailPage gallery={appData.gallery} />} />
       </Routes>
     </Router>
   );
