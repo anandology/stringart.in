@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import { Plus, Minus } from 'lucide-react';
 import GalleryGrid from './GalleryGrid';
 import { useCart } from './CartContext';
 
@@ -20,7 +21,7 @@ const slugify = (str: string) =>
 const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ products, gallery }) => {
   const { id } = useParams<{ id: string }>();
   const product = products.find((p) => p.id === id);
-  const { addItem } = useCart();
+  const { addItem, updateQuantity, state } = useCart();
 
   const [imgIdx, setImgIdx] = useState(0);
   const [showAddedMessage, setShowAddedMessage] = useState(false);
@@ -33,6 +34,10 @@ const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ products, gallery
     );
   }
 
+  // Check if this product is already in the cart
+  const cartItem = state.items.find(item => item.id === product.id);
+  const currentQuantity = cartItem?.quantity || 0;
+
   const handleAddToCart = () => {
     addItem({
       id: product.id,
@@ -42,6 +47,15 @@ const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ products, gallery
     });
     setShowAddedMessage(true);
     setTimeout(() => setShowAddedMessage(false), 2000);
+  };
+
+  const handleUpdateQuantity = (newQuantity: number) => {
+    if (newQuantity === 0) {
+      // Remove item if quantity becomes 0
+      updateQuantity(product.id, 0);
+    } else {
+      updateQuantity(product.id, newQuantity);
+    }
   };
 
   const kitGallery = Object.values(gallery.entries).filter((item: any) => item.kit === product.id);
@@ -102,17 +116,50 @@ const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ products, gallery
             {product.short_description && (
               <p className="text-lg text-gray-700 mb-4">{product.short_description}</p>
             )}
-            {/* Buy/Add to Cart */}
-            <div className="flex gap-4 mb-6">
-              <button className="bg-orange-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-orange-700 transition-colors shadow">
-                Buy Now
-              </button>
-              <button
-                onClick={handleAddToCart}
-                className="bg-orange-100 text-orange-700 px-6 py-2 rounded-lg font-semibold hover:bg-orange-200 transition-colors shadow relative"
-              >
-                {showAddedMessage ? 'Added to Cart!' : 'Add to Cart'}
-              </button>
+
+            {/* Cart Controls */}
+            <div className="mb-6">
+              {currentQuantity === 0 ? (
+                // Show "Add to Cart" button when item is not in cart
+                <div className="flex gap-4">
+                  <button className="bg-orange-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-orange-700 transition-colors shadow">
+                    Buy Now
+                  </button>
+                  <button
+                    onClick={handleAddToCart}
+                    className="bg-orange-100 text-orange-700 px-6 py-2 rounded-lg font-semibold hover:bg-orange-200 transition-colors shadow relative"
+                  >
+                    {showAddedMessage ? 'Added to Cart!' : 'Add to Cart'}
+                  </button>
+                </div>
+              ) : (
+                // Show quantity controls when item is in cart
+                <div className="space-y-4">
+                  <div className="flex items-center gap-4">
+                    <button className="bg-orange-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-orange-700 transition-colors shadow">
+                      Buy Now
+                    </button>
+                    <div className="flex items-center bg-white rounded-lg border border-orange-200 shadow-sm">
+                      <button
+                        onClick={() => handleUpdateQuantity(currentQuantity - 1)}
+                        className="p-2 hover:bg-orange-50 transition-colors rounded-l-lg"
+                        disabled={currentQuantity <= 1}
+                      >
+                        <Minus className="h-4 w-4" />
+                      </button>
+                      <span className="px-4 py-2 font-medium text-gray-900 min-w-[3rem] text-center">
+                        {currentQuantity}
+                      </span>
+                      <button
+                        onClick={() => handleUpdateQuantity(currentQuantity + 1)}
+                        className="p-2 hover:bg-orange-50 transition-colors rounded-r-lg"
+                      >
+                        <Plus className="h-4 w-4" />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>

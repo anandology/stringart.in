@@ -9,7 +9,7 @@ const CartPage: React.FC = () => {
     if (state.items.length === 0) {
         return (
             <div className="min-h-screen bg-white py-16">
-                <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center">
                         <div className="mx-auto h-24 w-24 text-gray-400 mb-6">
                             <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -33,7 +33,7 @@ const CartPage: React.FC = () => {
 
     return (
         <div className="min-h-screen bg-white py-16">
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between mb-8">
                     <h1 className="text-3xl font-bold text-gray-900">Shopping Cart</h1>
                     <button
@@ -49,40 +49,54 @@ const CartPage: React.FC = () => {
                     <div className="lg:col-span-2">
                         <div className="space-y-4">
                             {state.items.map((item) => (
-                                <div key={item.id} className="bg-orange-50 rounded-xl p-6 flex items-center space-x-4">
-                                    <img
-                                        src={item.image}
-                                        alt={item.title}
-                                        className="w-20 h-20 rounded-lg object-cover bg-white"
-                                    />
-                                    <div className="flex-1">
-                                        <h3 className="text-lg font-semibold text-gray-900 mb-1">{item.title}</h3>
-                                        <p className="text-orange-600 font-bold">₹{item.price}</p>
-                                    </div>
-                                    <div className="flex items-center space-x-2">
-                                        <button
-                                            onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                                            className="p-1 rounded-full hover:bg-orange-200 transition-colors"
-                                            disabled={item.quantity <= 1}
-                                        >
-                                            <Minus className="h-4 w-4" />
-                                        </button>
-                                        <span className="w-8 text-center font-medium">{item.quantity}</span>
-                                        <button
-                                            onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                                            className="p-1 rounded-full hover:bg-orange-200 transition-colors"
-                                        >
-                                            <Plus className="h-4 w-4" />
-                                        </button>
-                                    </div>
-                                    <div className="text-right">
-                                        <p className="text-lg font-bold text-gray-900">₹{item.price * item.quantity}</p>
-                                        <button
-                                            onClick={() => removeItem(item.id)}
-                                            className="text-red-600 hover:text-red-700 mt-1"
-                                        >
-                                            <Trash2 className="h-4 w-4" />
-                                        </button>
+                                <div key={item.id} className="bg-orange-50 rounded-xl p-6">
+                                    {/* Mobile: Two-row layout, Desktop: Single row */}
+                                    <div className="flex flex-col md:flex-row md:items-center space-y-4 md:space-y-0 md:space-x-4">
+                                        {/* Row 1: Image and Product Info + Controls */}
+                                        <div className="flex items-start space-x-4">
+                                            <img
+                                                src={item.image}
+                                                alt={item.title}
+                                                className="w-20 h-20 rounded-lg object-cover bg-white flex-shrink-0"
+                                            />
+                                            <div className="flex-1 min-w-0">
+                                                <div className="flex flex-col md:flex-row md:items-center md:justify-between space-y-4 md:space-y-0">
+                                                    <div>
+                                                        <h3 className="text-lg font-semibold text-gray-900 mb-1">{item.title}</h3>
+                                                        <p className="text-orange-600 font-bold">₹{item.price}</p>
+                                                    </div>
+
+                                                    {/* Controls aligned with title */}
+                                                    <div className="flex items-center justify-between md:justify-end md:space-x-4">
+                                                        <div className="flex items-center space-x-2">
+                                                            <button
+                                                                onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                                                                className="p-1 rounded-full hover:bg-orange-200 transition-colors"
+                                                                disabled={item.quantity <= 1}
+                                                            >
+                                                                <Minus className="h-4 w-4" />
+                                                            </button>
+                                                            <span className="w-8 text-center font-medium">{item.quantity}</span>
+                                                            <button
+                                                                onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                                                                className="p-1 rounded-full hover:bg-orange-200 transition-colors"
+                                                            >
+                                                                <Plus className="h-4 w-4" />
+                                                            </button>
+                                                        </div>
+                                                        <div className="flex items-center space-x-3">
+                                                            <p className="text-lg font-bold text-gray-900">₹{item.price * item.quantity}</p>
+                                                            <button
+                                                                onClick={() => removeItem(item.id)}
+                                                                className="text-red-600 hover:text-red-700"
+                                                            >
+                                                                <Trash2 className="h-4 w-4" />
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             ))}
