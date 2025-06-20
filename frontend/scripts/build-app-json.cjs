@@ -29,6 +29,7 @@ async function main() {
     const productsDir = path.join(dataDir, 'products');
     const galleryYmlPath = path.join(dataDir, 'gallery.yml');
     const galleryDir = path.join(dataDir, 'gallery');
+    const homeYmlPath = path.join(dataDir, 'home.yml');
     const appJsonPath = path.join(dataDir, 'app.json');
 
     // Read products.yml for product keys
@@ -68,6 +69,14 @@ async function main() {
         }
     }
 
+    // Read home.yml for hero images
+    let homeData = null;
+    try {
+        homeData = await readYAML(homeYmlPath);
+    } catch (err) {
+        console.error('Error reading home.yml:', err.message);
+    }
+
     // Combine and write app.json
     const appData = {
         products,
@@ -75,7 +84,8 @@ async function main() {
             entries: galleryEntries,
             ids: galleryIds,
             featured: galleryFeatured
-        }
+        },
+        home: homeData
     };
     await fs.writeFile(appJsonPath, JSON.stringify(appData, null, 2));
     console.log('Generated', appJsonPath);
