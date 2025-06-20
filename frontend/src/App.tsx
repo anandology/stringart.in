@@ -7,6 +7,8 @@ import TestimonialSection from './components/TestimonialSection';
 import GalleryTeaser from './components/GalleryTeaser';
 import Footer from './components/Footer';
 import LandingPage from './components/LandingPage';
+import GalleryPage from './components/GalleryPage';
+import GalleryDetailPage from './components/GalleryDetailPage';
 
 const Home = () => (
   <>
@@ -25,6 +27,8 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/get-started" element={<LandingPage />} />
+        <Route path="/gallery" element={<GalleryPage />} />
+        <Route path="/gallery/:id" element={<GalleryDetailPage />} />
       </Routes>
     </Router>
   );

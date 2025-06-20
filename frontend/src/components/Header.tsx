@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ShoppingCart, Menu, X } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -9,14 +10,14 @@ const Header = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
-            <h1 className="text-2xl font-bold text-orange-600">String Art Studio</h1>
+            <h1 className="text-2xl font-bold text-orange-600"><Link to="/">String Art Studio</Link></h1>
           </div>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-8">
-            <a href="#" className="text-gray-700 hover:text-orange-600 font-medium">Home</a>
+            <a href="/" className="text-gray-700 hover:text-orange-600 font-medium">Home</a>
             <a href="#" className="text-gray-700 hover:text-orange-600 font-medium">About</a>
-            <a href="#" className="text-gray-700 hover:text-orange-600 font-medium">Gallery</a>
+            <a href="/gallery" className="text-gray-700 hover:text-orange-600 font-medium">Gallery</a>
             <a href="#" className="text-gray-700 hover:text-orange-600 font-medium">Products</a>
           </nav>
 

@@ -4,21 +4,12 @@ const LandingPage = () => {
     return (
         <main className="bg-gradient-to-br from-orange-50 to-yellow-50 min-h-screen py-10">
             <div className="max-w-2xl mx-auto px-4 flex flex-col gap-8">
-                <section className="relative rounded-2xl shadow-xl p-8 flex flex-col items-center mb-0 overflow-hidden">
-                    {/* Subtle SVG thread-like pattern background */}
-                    <svg className="absolute inset-0 w-full h-full" style={{ zIndex: 0 }} width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-                        <defs>
-                            <pattern id="threads" width="32" height="32" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
-                                <line x1="0" y1="0" x2="32" y2="0" stroke="#fbbf24" strokeWidth="1" opacity="0.25" />
-                                <line x1="0" y1="16" x2="32" y2="16" stroke="#fbbf24" strokeWidth="1" opacity="0.25" />
-                            </pattern>
-                        </defs>
-                        <rect width="100%" height="100%" fill="white" />
-                        <rect width="100%" height="100%" fill="url(#threads)" />
-                    </svg>
+                <section className="relative rounded-2xl shadow-xl p-8 flex flex-col items-center mb-0 overflow-hidden" style={{ background: '#f5e1c5', backgroundImage: 'url(/brown-sheet.png)', backgroundRepeat: 'repeat', backgroundSize: 'cover' }}>
+                    {/* White overlay to lighten the background */}
+                    <div className="absolute inset-0 bg-white opacity-40 pointer-events-none" style={{ zIndex: 0 }}></div>
                     <div className="w-full flex flex-col md:flex-row items-center justify-center gap-8" style={{ position: 'relative', zIndex: 1 }}>
                         <div className="flex-shrink-0 flex items-center justify-center">
-                            <img src="/stringart-logo.png" alt="String Art Kit" className="w-40 h-40 object-contain rounded-full" />
+                            <img src="/stringart-logo.png" alt="String Art Kit" className="w-40 h-40 object-contain" />
                         </div>
                         <div className="flex flex-col items-center md:items-start text-center md:text-left">
                             <h1 className="leading-tight">
@@ -48,12 +39,12 @@ const LandingPage = () => {
                 <section className="bg-white rounded-2xl shadow-xl p-8 flex flex-col items-center mt-0">
                     <h2 className="text-2xl font-semibold text-gray-900 mb-4 text-center">Get Inspired</h2>
                     <div className="grid grid-cols-3 gap-4 mb-6 w-full">
-                        <img src="/stringart-logo.png" alt="Design 1" className="w-full aspect-square object-contain rounded-full" />
-                        <img src="/stringart-logo.png" alt="Design 2" className="w-full aspect-square object-contain rounded-full" />
-                        <img src="/stringart-logo.png" alt="Design 3" className="w-full aspect-square object-contain rounded-full" />
-                        <img src="/stringart-logo.png" alt="Design 4" className="w-full aspect-square object-contain rounded-full" />
-                        <img src="/stringart-logo.png" alt="Design 5" className="w-full aspect-square object-contain rounded-full" />
-                        <img src="/stringart-logo.png" alt="Design 6" className="w-full aspect-square object-contain rounded-full" />
+                        <img src="/stringart-logo.png" alt="Design 1" className="w-full aspect-square object-contain" />
+                        <img src="/images/boat.png" alt="Design 2" className="w-full aspect-square object-contain" />
+                        <img src="/images/dewdrop.png" alt="Design 3" className="w-full aspect-square object-contain" />
+                        <img src="/images/kichimu-by-varsha.png" alt="Design 4" className="w-full aspect-square object-contain" />
+                        <img src="/images/12point-mystic-rose-by-vihari.png" alt="Design 5" className="w-full aspect-square object-contain" />
+                        <img src="/images/square.png" alt="Design 6" className="w-full aspect-square object-contain" />
                     </div>
                     <a href="/gallery" className="bg-orange-600 text-white px-6 py-3 rounded-lg font-semibold text-lg text-center hover:bg-orange-700 transition-colors">See More Designs</a>
                 </section>
