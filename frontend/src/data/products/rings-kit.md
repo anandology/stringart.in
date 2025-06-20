@@ -11,6 +11,9 @@ images:
 includes:
   - 6 rings of precision laser-cut templates
   - 5 embriodary threads of assorted colors (each 8m long)
+
+similar_products:
+  - starter-kit
 ---
 
 Long description

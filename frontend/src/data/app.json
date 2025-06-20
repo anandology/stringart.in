@@ -14,6 +14,10 @@
         "4 rolls of colorful thread",
         "stickers to keep thread in place"
       ],
+      "similar_products": [
+        "advanced-kit",
+        "rings-kit"
+      ],
       "description_html": "<p>Long description of starter kit.</p>\n"
     },
     {
@@ -43,6 +47,9 @@
       "includes": [
         "6 rings of precision laser-cut templates",
         "5 embriodary threads of assorted colors (each 8m long)"
+      ],
+      "similar_products": [
+        "starter-kit"
       ],
       "description_html": "<p>Long description</p>\n"
     }
