@@ -1,6 +1,5 @@
 ---
-id: advanced-kit
-name: "String Art Advanced Kit"
+title: "String Art Advanced Kit"
 price: 500
 short_description: >
   Advanced patterns for serious creators. Requires working with a needle.

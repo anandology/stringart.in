@@ -45,7 +45,7 @@ const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ products, gallery
               <div className="bg-white p-8">
                 <img
                   src={images[imgIdx]}
-                  alt={product.title || product.name}
+                  alt={product.title}
                   className="rounded-xl w-full aspect-square object-cover"
                   style={{ maxHeight: 400, objectFit: 'contain' }}
                 />
@@ -82,7 +82,7 @@ const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ products, gallery
         {/* Details Column */}
         <div className="md:w-1/2 w-full flex flex-col p-4">
           <div className="mb-6">
-            <h1 className="text-3xl font-extrabold text-gray-900 mb-2">{product.title || product.name}</h1>
+            <h1 className="text-3xl font-extrabold text-gray-900 mb-2">{product.title}</h1>
             <span className="text-2xl font-bold text-orange-600 block mb-4">₹{product.price}</span>
             {/* Short description */}
             {product.short_description && (
@@ -141,11 +141,11 @@ const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ products, gallery
                 >
                   <img
                     src={similarProduct.images[0]}
-                    alt={similarProduct.name}
+                    alt={similarProduct.title}
                     className="rounded-xl mb-4 w-full aspect-square object-cover bg-white"
                     loading="lazy"
                   />
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">{similarProduct.name}</h3>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-2">{similarProduct.title}</h3>
                   <p className="text-gray-600 mb-4 flex-1">{similarProduct.short_description}</p>
                   <div className="flex items-center justify-between mt-auto">
                     <span className="text-lg font-bold text-orange-600">₹{similarProduct.price}</span>

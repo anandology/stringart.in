@@ -40,7 +40,7 @@ async function main() {
         const productPath = path.join(productsDir, key + '.md');
         try {
             const product = await readMarkdownFile(productPath);
-            products.push(product);
+            products.push({ id: key, ...product });
         } catch (err) {
             console.error(`Error reading product file for key '${key}':`, err.message);
         }

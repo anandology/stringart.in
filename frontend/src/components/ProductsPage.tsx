@@ -17,11 +17,11 @@ const ProductsPage = () => {
                         >
                             <img
                                 src={product.images[0]}
-                                alt={product.name}
+                                alt={product.title}
                                 className="rounded-xl mb-4 w-full aspect-square object-cover bg-white"
                                 loading="lazy"
                             />
-                            <h3 className="text-xl font-semibold text-gray-900 mb-2">{product.name}</h3>
+                            <h3 className="text-xl font-semibold text-gray-900 mb-2">{product.title}</h3>
                             <p className="text-gray-600 mb-4 flex-1">{product.short_description}</p>
                             <div className="flex items-center justify-between mt-auto">
                                 <span className="text-lg font-bold text-orange-600">₹{product.price}</span>

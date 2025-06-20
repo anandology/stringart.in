@@ -1,6 +1,5 @@
 ---
-id: starter-kit
-name: "String Art Starter Kit"
+title: "String Art Starter Kit"
 price: 500
 short_description: > 
   Everything you need to create your first string art masterpiece. 

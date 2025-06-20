@@ -2,7 +2,7 @@
   "products": [
     {
       "id": "starter-kit",
-      "name": "String Art Starter Kit",
+      "title": "String Art Starter Kit",
       "price": 500,
       "short_description": "Everything you need to create your first string art masterpiece.  Kids friendly. \n",
       "images": [
@@ -22,7 +22,7 @@
     },
     {
       "id": "advanced-kit",
-      "name": "String Art Advanced Kit",
+      "title": "String Art Advanced Kit",
       "price": 500,
       "short_description": "Advanced patterns for serious creators. Requires working with a needle.\n",
       "images": [
@@ -38,7 +38,7 @@
     },
     {
       "id": "rings-kit",
-      "name": "String Art Rings Kit",
+      "title": "String Art Rings Kit",
       "price": 500,
       "short_description": "Precision cut wooden rings and embriodary threads for creating beautiful string art. \n",
       "images": [
