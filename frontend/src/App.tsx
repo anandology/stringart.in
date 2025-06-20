@@ -11,11 +11,21 @@ import GalleryPage from './components/GalleryPage';
 import GalleryDetailPage from './components/GalleryDetailPage';
 import ProductsPage from './components/ProductsPage';
 import ProductDetailPage from './components/ProductDetailPage';
+import CartPage from './components/CartPage';
+import { CartProvider } from './components/CartContext';
 
 const ProductsRoute = () => (
   <>
     <Header />
     <ProductsPage />
+    <Footer />
+  </>
+);
+
+const CartRoute = () => (
+  <>
+    <Header />
+    <CartPage />
     <Footer />
   </>
 );
@@ -51,16 +61,19 @@ const App = () => {
   );
 
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/get-started" element={<LandingPage />} />
-        <Route path="/gallery" element={<GalleryPage gallery={appData.gallery} />} />
-        <Route path="/gallery/:id" element={<GalleryDetailPage gallery={appData.gallery} />} />
-        <Route path="/products" element={<ProductsRoute />} />
-        <Route path="/products/:id" element={<ProductDetailRoute />} />
-      </Routes>
-    </Router>
+    <CartProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/get-started" element={<LandingPage />} />
+          <Route path="/gallery" element={<GalleryPage gallery={appData.gallery} />} />
+          <Route path="/gallery/:id" element={<GalleryDetailPage gallery={appData.gallery} />} />
+          <Route path="/products" element={<ProductsRoute />} />
+          <Route path="/products/:id" element={<ProductDetailRoute />} />
+          <Route path="/cart" element={<CartRoute />} />
+        </Routes>
+      </Router>
+    </CartProvider>
   );
 };
 

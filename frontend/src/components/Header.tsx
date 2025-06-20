@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { ShoppingCart, Menu, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import CartIcon from './CartIcon';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -22,10 +23,7 @@ const Header = () => {
           </nav>
 
           <div className="flex items-center space-x-4">
-            <button className="flex items-center text-gray-700 hover:text-orange-600">
-              <ShoppingCart className="h-6 w-6" />
-              <span className="ml-1 font-medium hidden sm:block">Cart</span>
-            </button>
+            <CartIcon />
 
             {/* Mobile menu button */}
             <button

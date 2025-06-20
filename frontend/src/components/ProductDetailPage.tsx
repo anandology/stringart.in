@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import GalleryGrid from './GalleryGrid';
+import { useCart } from './CartContext';
 
 interface ProductDetailPageProps {
   products: any[];
@@ -19,8 +20,10 @@ const slugify = (str: string) =>
 const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ products, gallery }) => {
   const { id } = useParams<{ id: string }>();
   const product = products.find((p) => p.id === id);
+  const { addItem } = useCart();
 
   const [imgIdx, setImgIdx] = useState(0);
+  const [showAddedMessage, setShowAddedMessage] = useState(false);
 
   if (!product) {
     return (
@@ -29,6 +32,17 @@ const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ products, gallery
       </div>
     );
   }
+
+  const handleAddToCart = () => {
+    addItem({
+      id: product.id,
+      title: product.title,
+      price: product.price,
+      image: product.images[0],
+    });
+    setShowAddedMessage(true);
+    setTimeout(() => setShowAddedMessage(false), 2000);
+  };
 
   const kitGallery = Object.values(gallery.entries).filter((item: any) => item.kit === product.id);
   const images = product.images || [];
@@ -93,8 +107,11 @@ const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ products, gallery
               <button className="bg-orange-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-orange-700 transition-colors shadow">
                 Buy Now
               </button>
-              <button className="bg-orange-100 text-orange-700 px-6 py-2 rounded-lg font-semibold hover:bg-orange-200 transition-colors shadow">
-                Add to Cart
+              <button
+                onClick={handleAddToCart}
+                className="bg-orange-100 text-orange-700 px-6 py-2 rounded-lg font-semibold hover:bg-orange-200 transition-colors shadow relative"
+              >
+                {showAddedMessage ? 'Added to Cart!' : 'Add to Cart'}
               </button>
             </div>
           </div>
