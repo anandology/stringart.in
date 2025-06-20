@@ -1,9 +1,0 @@
-id: starter-kit
-name: "String Art Starter Kit"
-price: 500
-description: > 
-  Everything you need to create your first string art masterpiece. 
-  Kids friendly. 
-images:
-  - "/stringart-logo.png"
-  - "/images/kichimu.png" 

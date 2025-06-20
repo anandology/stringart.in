@@ -4,30 +4,47 @@
       "id": "starter-kit",
       "name": "String Art Starter Kit",
       "price": 500,
-      "description": "Everything you need to create your first string art masterpiece.  Kids friendly. \n",
+      "short_description": "Everything you need to create your first string art masterpiece.  Kids friendly. \n",
       "images": [
         "/stringart-logo.png",
         "/images/kichimu.png"
-      ]
+      ],
+      "includes": [
+        "20 precision laser-cut templates out of think paper",
+        "4 rolls of colorful thread",
+        "stickers to keep thread in place"
+      ],
+      "long_description_html": "<p>Long description of starter kit.</p>\n"
     },
     {
       "id": "advanced-kit",
       "name": "String Art Advanced Kit",
       "price": 500,
-      "description": "Advanced patterns for serious creators. Requires working with a needle.\n",
+      "short_description": "Advanced patterns for serious creators. Requires working with a needle.\n",
       "images": [
         "/images/8-pointed-star.png",
         "/images/products/advanced-kit-2.jpg"
-      ]
+      ],
+      "includes": [
+        "20 precision laser-cut templates out of think paper",
+        "4 rolls of colorful thread",
+        "stickers to keep thread in place"
+      ],
+      "long_description_html": "<p>Long description.</p>\n"
     },
     {
       "id": "rings-kit",
       "name": "String Art Rings Kit",
       "price": 600,
-      "description": "Precision cut wooden rings and embriodary threads for creating beautiful string art. \n",
+      "short_description": "Precision cut wooden rings and embriodary threads for creating beautiful string art. \n",
       "images": [
         "/images/rings-double-loop.png"
-      ]
+      ],
+      "includes": [
+        "6 rings of precision laser-cut templates",
+        "5 embriodary threads of assorted colors (each 8m long)"
+      ],
+      "long_description_html": "<p>Long description</p>\n"
     }
   ],
   "gallery": [

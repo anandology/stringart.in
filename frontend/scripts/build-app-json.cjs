@@ -2,10 +2,25 @@
 const fs = require('fs/promises');
 const path = require('path');
 const yaml = require('js-yaml');
+const matter = require('gray-matter');
+const MarkdownIt = require('markdown-it');
+
+const md = new MarkdownIt();
 
 async function readYAML(filePath) {
     const content = await fs.readFile(filePath, 'utf8');
     return yaml.load(content);
+}
+
+async function readProductMarkdown(filePath) {
+    const content = await fs.readFile(filePath, 'utf8');
+    const parsed = matter(content);
+    const frontmatter = parsed.data;
+    const longDescriptionHtml = md.render(parsed.content);
+    return {
+        ...frontmatter,
+        long_description_html: longDescriptionHtml
+    };
 }
 
 async function main() {
@@ -18,12 +33,12 @@ async function main() {
     // Read products.yml for product keys
     const productKeys = await readYAML(productsYmlPath);
 
-    // Read each product YAML file in order
+    // Read each product markdown file in order
     const products = [];
     for (const key of productKeys) {
-        const productPath = path.join(productsDir, key + '.yml');
+        const productPath = path.join(productsDir, key + '.md');
         try {
-            const product = await readYAML(productPath);
+            const product = await readProductMarkdown(productPath);
             products.push(product);
         } catch (err) {
             console.error(`Error reading product file for key '${key}':`, err.message);
