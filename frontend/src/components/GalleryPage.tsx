@@ -19,7 +19,7 @@ const GalleryPage: React.FC<GalleryPageProps> = ({ gallery }) => {
                             <Link key={idx} to={`/gallery/${idx}`} className="block group">
                                 <div className="aspect-square w-full bg-white rounded shadow flex items-center justify-center overflow-hidden">
                                     <img
-                                        src={`/images/${item.filename}`}
+                                        src={`${item.image}`}
                                         alt={item.title}
                                         className="w-full h-full object-contain"
                                     />

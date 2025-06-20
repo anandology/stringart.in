@@ -31,14 +31,6 @@ const ProductsRoute = () => (
   </>
 );
 
-const ProductDetailRoute = () => (
-  <>
-    <Header />
-    <ProductDetailPage />
-    <Footer />
-  </>
-);
-
 const App = () => {
   const [appData, setAppData] = useState<any | null>(null);
 
@@ -49,6 +41,14 @@ const App = () => {
   }, []);
 
   if (!appData || !appData.gallery) return <div>Loading...</div>;
+
+  const ProductDetailRoute = () => (
+    <>
+      <Header />
+      <ProductDetailPage products={appData.products} gallery={appData.gallery} />
+      <Footer />
+    </>
+  );
 
   return (
     <Router>

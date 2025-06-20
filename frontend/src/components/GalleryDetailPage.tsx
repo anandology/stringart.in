@@ -31,7 +31,7 @@ const GalleryDetailPage: React.FC<GalleryDetailPageProps> = ({ gallery }) => {
                     <div className="bg-white rounded-2xl shadow-xl p-8 flex flex-col items-center">
                         <div className="aspect-square w-full max-w-md bg-white rounded flex items-center justify-center overflow-hidden mb-4">
                             <img
-                                src={`/images/${item.filename}`}
+                                src={`${item.image}`}
                                 alt={item.title}
                                 className="w-full h-full object-contain"
                             />

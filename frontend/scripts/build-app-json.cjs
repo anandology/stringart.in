@@ -16,10 +16,10 @@ async function readProductMarkdown(filePath) {
     const content = await fs.readFile(filePath, 'utf8');
     const parsed = matter(content);
     const frontmatter = parsed.data;
-    const longDescriptionHtml = md.render(parsed.content);
+    const descriptionHtml = md.render(parsed.content);
     return {
         ...frontmatter,
-        long_description_html: longDescriptionHtml
+        description_html: descriptionHtml
     };
 }
 

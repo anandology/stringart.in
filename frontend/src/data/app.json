@@ -14,7 +14,7 @@
         "4 rolls of colorful thread",
         "stickers to keep thread in place"
       ],
-      "long_description_html": "<p>Long description of starter kit.</p>\n"
+      "description_html": "<p>Long description of starter kit.</p>\n"
     },
     {
       "id": "advanced-kit",
@@ -30,7 +30,7 @@
         "4 rolls of colorful thread",
         "stickers to keep thread in place"
       ],
-      "long_description_html": "<p>Long description.</p>\n"
+      "description_html": "<p>Long description.</p>\n"
     },
     {
       "id": "rings-kit",
@@ -44,12 +44,13 @@
         "6 rings of precision laser-cut templates",
         "5 embriodary threads of assorted colors (each 8m long)"
       ],
-      "long_description_html": "<p>Long description</p>\n"
+      "description_html": "<p>Long description</p>\n"
     }
   ],
   "gallery": [
     {
-      "filename": "boat.png",
+      "id": "boat",
+      "image": "/images/boat.png",
       "title": "Boat",
       "author": "Author Name",
       "date": "2024-06-01",
@@ -58,7 +59,8 @@
       "description": "Description for Boat."
     },
     {
-      "filename": "square.png",
+      "id": "square",
+      "image": "/images/square.png",
       "title": "Square",
       "author": "Author Name",
       "date": "2024-06-01",
@@ -67,7 +69,8 @@
       "description": "Description for Square."
     },
     {
-      "filename": "12point-mystic-rose.png",
+      "id": "12point-mystic-rose",
+      "image": "/images/12point-mystic-rose.png",
       "title": "12point Mystic Rose",
       "author": "Author Name",
       "date": "2024-06-01",
@@ -76,7 +79,8 @@
       "description": "Description for 12point Mystic Rose."
     },
     {
-      "filename": "dewdrop.png",
+      "id": "dewdrop",
+      "image": "/images/dewdrop.png",
       "title": "Dewdrop",
       "author": "Author Name",
       "date": "2024-06-01",
@@ -85,7 +89,8 @@
       "description": "Description for Dewdrop."
     },
     {
-      "filename": "kichimu.png",
+      "id": "kichimu",
+      "image": "/images/kichimu.png",
       "title": "Kichimu",
       "author": "Author Name",
       "date": "2024-06-01",
@@ -94,7 +99,8 @@
       "description": "Description for Kichimu."
     },
     {
-      "filename": "three-circles.png",
+      "id": "three-circles",
+      "image": "/images/three-circles.png",
       "title": "Three Circles",
       "author": "Author Name",
       "date": "2024-06-01",
@@ -103,7 +109,8 @@
       "description": "Description for Three Circles."
     },
     {
-      "filename": "sunflower.png",
+      "id": "sunflower",
+      "image": "/images/sunflower.png",
       "title": "Sunflower",
       "author": "Author Name",
       "date": "2024-06-01",
@@ -112,7 +119,8 @@
       "description": "Description for Sunflower."
     },
     {
-      "filename": "four-circles.png",
+      "id": "four-circles",
+      "image": "/images/four-circles.png",
       "title": "Four Circles",
       "author": "Author Name",
       "date": "2024-06-01",
@@ -121,7 +129,8 @@
       "description": "Description for Four Circles."
     },
     {
-      "filename": "8-pointed-star.png",
+      "id": "8-pointed-star",
+      "image": "/images/8-pointed-star.png",
       "title": "8 Pointed Star",
       "author": "Author Name",
       "date": "2024-06-01",
@@ -130,7 +139,8 @@
       "description": "Description for 8 Pointed Star."
     },
     {
-      "filename": "flower6.png",
+      "id": "flower6",
+      "image": "/images/flower6.png",
       "title": "Flower with 6 petals",
       "author": "Author Name",
       "date": "2024-06-01",
