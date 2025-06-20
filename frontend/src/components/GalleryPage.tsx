@@ -16,7 +16,7 @@ const GalleryPage: React.FC<GalleryPageProps> = ({ gallery }) => {
                     <h1 className="text-3xl font-bold mb-6">Gallery</h1>
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                         {gallery.map((item: any, idx: number) => (
-                            <Link key={idx} to={`/gallery/${idx}`} className="block group">
+                            <Link key={idx} to={`/gallery/${item.id}`} className="block group">
                                 <div className="aspect-square w-full bg-white rounded shadow flex items-center justify-center overflow-hidden">
                                     <img
                                         src={`${item.image}`}

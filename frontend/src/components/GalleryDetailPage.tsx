@@ -9,8 +9,7 @@ interface GalleryDetailPageProps {
 
 const GalleryDetailPage: React.FC<GalleryDetailPageProps> = ({ gallery }) => {
     const { id } = useParams<{ id: string }>();
-    const idx = Number(id);
-    const item = gallery[idx];
+    const item = gallery.find((g) => g.id === id);
     const navigate = useNavigate();
 
     if (!item) {
