@@ -177,5 +177,14 @@
       "four-circles",
       "8-pointed-star"
     ]
+  },
+  "home": {
+    "hero_images": [
+      "/images/three-circles.png",
+      "/images/four-circles.png",
+      "/images/8-pointed-star.png",
+      "/images/boat.png",
+      "/images/sunflower.png"
+    ]
   }
 }

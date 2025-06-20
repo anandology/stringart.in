@@ -53,7 +53,7 @@ const App = () => {
   const Home = () => (
     <>
       <Header />
-      <HeroSection />
+      <HeroSection heroImages={appData.home?.hero_images} />
       <ProductShowcase />
       <TestimonialSection />
       <GalleryShowcase gallery={appData.gallery} />
