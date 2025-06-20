@@ -4,7 +4,9 @@ import GalleryGrid from './GalleryGrid';
 
 interface ProductDetailPageProps {
   products: any[];
-  gallery: any[];
+  gallery: {
+    entries: { [id: string]: any };
+  };
 }
 
 // Slugify function for gallery titles
@@ -28,12 +30,12 @@ const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ products, gallery
     );
   }
 
-  const kitGallery = gallery.filter((item) => item.kit === product.id);
+  const kitGallery = Object.values(gallery.entries).filter((item: any) => item.kit === product.id);
   const images = product.images || [];
   const includes = product.includes || [];
 
   return (
-    <div className="max-w-3xl mx-auto py-10 px-4">
+    <div className="max-w-7xl mx-auto py-10 px-4 sm:px-6 lg:px-8">
       <div className="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <h1 className="text-3xl font-bold text-gray-900">{product.title || product.name}</h1>
         <span className="text-2xl font-bold text-orange-600">₹{product.price}</span>

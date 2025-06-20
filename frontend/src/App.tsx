@@ -37,7 +37,7 @@ const App = () => {
       <HeroSection />
       <ProductShowcase />
       <TestimonialSection />
-      <GalleryShowcase gallery={appData.gallery.filter((item: any) => item.featured)} />
+      <GalleryShowcase gallery={appData.gallery} />
       <Footer />
     </>
   );

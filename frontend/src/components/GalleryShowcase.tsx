@@ -4,10 +4,15 @@ import { ArrowRight } from 'lucide-react';
 import GalleryGrid from './GalleryGrid';
 
 interface GalleryShowcaseProps {
-  gallery: any[];
+  gallery: {
+    entries: { [id: string]: any };
+    featured: string[];
+  };
 }
 
 const GalleryShowcase: React.FC<GalleryShowcaseProps> = ({ gallery }) => {
+  const { entries, featured } = gallery;
+  const featuredItems = featured.map((id: string) => entries[id]).filter(Boolean);
   return (
     <section className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -33,7 +38,7 @@ const GalleryShowcase: React.FC<GalleryShowcaseProps> = ({ gallery }) => {
           ))}
         </div> */}
 
-        <GalleryGrid items={gallery} maxItems={3} />
+        <GalleryGrid items={featuredItems} maxItems={3} />
 
         <div className="text-center pt-10">
           <Link

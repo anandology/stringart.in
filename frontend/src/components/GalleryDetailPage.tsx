@@ -4,12 +4,14 @@ import Header from './Header';
 import Footer from './Footer';
 
 interface GalleryDetailPageProps {
-    gallery: any[];
+    gallery: {
+        entries: { [id: string]: any };
+    };
 }
 
 const GalleryDetailPage: React.FC<GalleryDetailPageProps> = ({ gallery }) => {
     const { id } = useParams<{ id: string }>();
-    const item = gallery.find((g) => g.id === id);
+    const item = gallery.entries[id];
     const navigate = useNavigate();
 
     if (!item) {
@@ -36,7 +38,7 @@ const GalleryDetailPage: React.FC<GalleryDetailPageProps> = ({ gallery }) => {
                             />
                         </div>
                         <h1 className="text-2xl font-bold mb-2">{item.title}</h1>
-                        <div className="mb-2">{item.description}</div>
+                        <div className="mb-2">{item.description_html || item.description}</div>
                     </div>
                 </div>
             </main>
