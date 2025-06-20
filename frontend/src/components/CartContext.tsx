@@ -18,8 +18,7 @@ type CartAction =
     | { type: 'ADD_ITEM'; payload: Omit<CartItem, 'quantity'> }
     | { type: 'UPDATE_QUANTITY'; payload: { id: string; quantity: number } }
     | { type: 'REMOVE_ITEM'; payload: { id: string } }
-    | { type: 'CLEAR_CART' }
-    | { type: 'LOAD_CART'; payload: CartState };
+    | { type: 'CLEAR_CART' };
 
 const CartContext = createContext<{
     state: CartState;
@@ -75,9 +74,6 @@ const cartReducer = (state: CartState, action: CartAction): CartState => {
         case 'CLEAR_CART':
             return { items: [], totalItems: 0, totalPrice: 0 };
 
-        case 'LOAD_CART':
-            return action.payload;
-
         default:
             return state;
     }
@@ -89,24 +85,27 @@ const initialState: CartState = {
     totalPrice: 0,
 };
 
-export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-    const [state, dispatch] = useReducer(cartReducer, initialState);
-
-    // Load cart from localStorage on mount
-    useEffect(() => {
+// Function to get initial state from localStorage
+const getInitialState = (): CartState => {
+    try {
         const savedCart = localStorage.getItem('cart');
         if (savedCart) {
-            try {
-                const parsedCart = JSON.parse(savedCart);
-                dispatch({ type: 'LOAD_CART', payload: parsedCart });
-            } catch (error) {
-                console.error('Error loading cart from localStorage:', error);
-            }
+            const parsedCart = JSON.parse(savedCart);
+            console.log('Loading initial cart from localStorage:', parsedCart);
+            return parsedCart;
         }
-    }, []);
+    } catch (error) {
+        console.error('Error loading initial cart from localStorage:', error);
+    }
+    return initialState;
+};
+
+export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+    const [state, dispatch] = useReducer(cartReducer, getInitialState());
 
     // Save cart to localStorage whenever it changes
     useEffect(() => {
+        console.log('Saving cart to localStorage:', state);
         localStorage.setItem('cart', JSON.stringify(state));
     }, [state]);
 
