@@ -4,12 +4,36 @@ const LandingPage = () => {
     return (
         <main className="bg-gradient-to-br from-orange-50 to-yellow-50 min-h-screen py-10">
             <div className="max-w-2xl mx-auto px-4 flex flex-col gap-8">
-                <section className="bg-white rounded-2xl shadow-xl p-8 flex flex-col items-center">
-                    <h1 className="text-3xl sm:text-4xl font-bold text-orange-600 mb-4 text-center">Get Started with Your String Art Kit!</h1>
-                    <p className="text-lg text-gray-700 mb-6 text-center">
-                        Watch the video below and follow the steps to create beautiful string art. Explore the FAQ and Gallery for more inspiration!
+                <section className="relative rounded-2xl shadow-xl p-8 flex flex-col items-center mb-0 overflow-hidden">
+                    {/* Subtle SVG thread-like pattern background */}
+                    <svg className="absolute inset-0 w-full h-full" style={{ zIndex: 0 }} width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <pattern id="threads" width="32" height="32" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+                                <line x1="0" y1="0" x2="32" y2="0" stroke="#fbbf24" strokeWidth="1" opacity="0.25" />
+                                <line x1="0" y1="16" x2="32" y2="16" stroke="#fbbf24" strokeWidth="1" opacity="0.25" />
+                            </pattern>
+                        </defs>
+                        <rect width="100%" height="100%" fill="white" />
+                        <rect width="100%" height="100%" fill="url(#threads)" />
+                    </svg>
+                    <div className="w-full flex flex-col md:flex-row items-center justify-center gap-8" style={{ position: 'relative', zIndex: 1 }}>
+                        <div className="flex-shrink-0 flex items-center justify-center">
+                            <img src="/stringart-logo.png" alt="String Art Kit" className="w-40 h-40 object-contain rounded-full" />
+                        </div>
+                        <div className="flex flex-col items-center md:items-start text-center md:text-left">
+                            <h1 className="leading-tight">
+                                <span className="block text-5xl sm:text-6xl font-extrabold text-orange-600">String Art</span>
+                                <span className="block text-5xl sm:text-6xl font-normal text-gray-700">Starter Kit</span>
+                            </h1>
+                        </div>
+                    </div>
+                </section>
+                <section className="bg-white rounded-2xl shadow-xl p-8 flex flex-col items-center mt-0">
+                    <h2 className="text-2xl font-semibold text-gray-900 mb-4 text-center">Get Started</h2>
+                    <p className="text-lg text-gray-700 mb-4 text-center">
+                        Watch the video below and follow the steps to create beautiful string art.
                     </p>
-                    <div className="w-full aspect-video mb-6">
+                    <div className="w-full aspect-video mb-0">
                         {/* Replace the src with your actual tutorial video URL */}
                         <iframe
                             className="w-full h-full rounded-lg shadow"
@@ -20,10 +44,18 @@ const LandingPage = () => {
                             allowFullScreen
                         ></iframe>
                     </div>
-                    <div className="flex flex-col sm:flex-row gap-4 w-full justify-center">
-                        <a href="/faq" className="bg-orange-600 text-white px-6 py-3 rounded-lg font-semibold text-lg text-center hover:bg-orange-700 transition-colors flex-1">FAQ</a>
-                        <a href="/gallery" className="border-2 border-orange-600 text-orange-600 px-6 py-3 rounded-lg font-semibold text-lg text-center hover:bg-orange-50 transition-colors flex-1">Gallery</a>
+                </section>
+                <section className="bg-white rounded-2xl shadow-xl p-8 flex flex-col items-center mt-0">
+                    <h2 className="text-2xl font-semibold text-gray-900 mb-4 text-center">Get Inspired</h2>
+                    <div className="grid grid-cols-3 gap-4 mb-6 w-full">
+                        <img src="/stringart-logo.png" alt="Design 1" className="w-full aspect-square object-contain rounded-full" />
+                        <img src="/stringart-logo.png" alt="Design 2" className="w-full aspect-square object-contain rounded-full" />
+                        <img src="/stringart-logo.png" alt="Design 3" className="w-full aspect-square object-contain rounded-full" />
+                        <img src="/stringart-logo.png" alt="Design 4" className="w-full aspect-square object-contain rounded-full" />
+                        <img src="/stringart-logo.png" alt="Design 5" className="w-full aspect-square object-contain rounded-full" />
+                        <img src="/stringart-logo.png" alt="Design 6" className="w-full aspect-square object-contain rounded-full" />
                     </div>
+                    <a href="/gallery" className="bg-orange-600 text-white px-6 py-3 rounded-lg font-semibold text-lg text-center hover:bg-orange-700 transition-colors">See More Designs</a>
                 </section>
                 <section className="bg-white rounded-2xl shadow p-6 flex flex-col items-center">
                     <h2 className="text-xl font-semibold text-gray-900 mb-2">Share Your Creations!</h2>
