@@ -21,7 +21,7 @@ async function main() {
     // Read each product YAML file in order
     const products = [];
     for (const key of productKeys) {
-        const productPath = path.join(productsDir, key + '.yaml');
+        const productPath = path.join(productsDir, key + '.yml');
         try {
             const product = await readYAML(productPath);
             products.push(product);
@@ -41,7 +41,7 @@ async function main() {
     // Combine and write app.json
     const appData = { products, gallery };
     await fs.writeFile(appJsonPath, JSON.stringify(appData, null, 2));
-    console.log('Generated app.json');
+    console.log('Generated ', appJsonPath);
 }
 
 main().catch(err => {

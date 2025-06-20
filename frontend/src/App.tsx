@@ -9,6 +9,8 @@ import Footer from './components/Footer';
 import LandingPage from './components/LandingPage';
 import GalleryPage from './components/GalleryPage';
 import GalleryDetailPage from './components/GalleryDetailPage';
+import ProductsPage from './components/ProductsPage';
+import ProductDetailPage from './components/ProductDetailPage';
 
 const Home = () => (
   <>
@@ -17,6 +19,22 @@ const Home = () => (
     <ProductShowcase />
     <TestimonialSection />
     <GalleryTeaser />
+    <Footer />
+  </>
+);
+
+const ProductsRoute = () => (
+  <>
+    <Header />
+    <ProductsPage />
+    <Footer />
+  </>
+);
+
+const ProductDetailRoute = () => (
+  <>
+    <Header />
+    <ProductDetailPage />
     <Footer />
   </>
 );
@@ -39,6 +57,8 @@ const App = () => {
         <Route path="/get-started" element={<LandingPage />} />
         <Route path="/gallery" element={<GalleryPage gallery={appData.gallery} />} />
         <Route path="/gallery/:id" element={<GalleryDetailPage gallery={appData.gallery} />} />
+        <Route path="/products" element={<ProductsRoute />} />
+        <Route path="/products/:id" element={<ProductDetailRoute />} />
       </Routes>
     </Router>
   );
