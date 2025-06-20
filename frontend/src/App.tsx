@@ -4,7 +4,7 @@ import Header from './components/Header';
 import HeroSection from './components/HeroSection';
 import ProductShowcase from './components/ProductShowcase';
 import TestimonialSection from './components/TestimonialSection';
-import GalleryTeaser from './components/GalleryTeaser';
+import GalleryShowcase from './components/GalleryShowcase';
 import Footer from './components/Footer';
 import LandingPage from './components/LandingPage';
 import GalleryPage from './components/GalleryPage';
@@ -18,7 +18,7 @@ const Home = () => (
     <HeroSection />
     <ProductShowcase />
     <TestimonialSection />
-    <GalleryTeaser />
+    <GalleryShowcase />
     <Footer />
   </>
 );
