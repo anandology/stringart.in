@@ -51,50 +51,45 @@ const CartPage: React.FC = () => {
                             {state.items.map((item) => (
                                 <div key={item.id} className="bg-orange-50 rounded-xl p-6">
                                     {/* Mobile: Two-row layout, Desktop: Single row */}
-                                    <div className="flex flex-col md:flex-row md:items-center space-y-4 md:space-y-0 md:space-x-4">
-                                        {/* Row 1: Image and Product Info + Controls */}
-                                        <div className="flex items-start space-x-4">
+                                    <div className="flex flex-col md:flex-row md:items-center space-y-4 md:space-y-0 md:space-x-6">
+                                        {/* Row 1: Image and Product Info */}
+                                        <div className="flex items-start space-x-4 flex-1">
                                             <img
                                                 src={item.image}
                                                 alt={item.title}
                                                 className="w-20 h-20 rounded-lg object-cover bg-white flex-shrink-0"
                                             />
                                             <div className="flex-1 min-w-0">
-                                                <div className="flex flex-col md:flex-row md:items-center md:justify-between space-y-4 md:space-y-0">
-                                                    <div>
-                                                        <h3 className="text-lg font-semibold text-gray-900 mb-1">{item.title}</h3>
-                                                        <p className="text-orange-600 font-bold">₹{item.price}</p>
-                                                    </div>
+                                                <h3 className="text-lg font-semibold text-gray-900 mb-1">{item.title}</h3>
+                                                <p className="text-orange-600 font-bold">₹{item.price}</p>
+                                            </div>
+                                        </div>
 
-                                                    {/* Controls aligned with title */}
-                                                    <div className="flex items-center justify-between md:justify-end md:space-x-4">
-                                                        <div className="flex items-center space-x-2">
-                                                            <button
-                                                                onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                                                                className="p-1 rounded-full hover:bg-orange-200 transition-colors"
-                                                                disabled={item.quantity <= 1}
-                                                            >
-                                                                <Minus className="h-4 w-4" />
-                                                            </button>
-                                                            <span className="w-8 text-center font-medium">{item.quantity}</span>
-                                                            <button
-                                                                onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                                                                className="p-1 rounded-full hover:bg-orange-200 transition-colors"
-                                                            >
-                                                                <Plus className="h-4 w-4" />
-                                                            </button>
-                                                        </div>
-                                                        <div className="flex items-center space-x-3">
-                                                            <p className="text-lg font-bold text-gray-900">₹{item.price * item.quantity}</p>
-                                                            <button
-                                                                onClick={() => removeItem(item.id)}
-                                                                className="text-red-600 hover:text-red-700"
-                                                            >
-                                                                <Trash2 className="h-4 w-4" />
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                        {/* Row 2: Controls, Total, Remove */}
+                                        <div className="flex items-center justify-between md:justify-end md:space-x-4">
+                                            <div className="flex items-center space-x-2">
+                                                <button
+                                                    onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                                                    className="p-1 rounded-full hover:bg-orange-200 transition-colors"
+                                                >
+                                                    <Minus className="h-4 w-4" />
+                                                </button>
+                                                <span className="w-8 text-center font-medium">{item.quantity}</span>
+                                                <button
+                                                    onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                                                    className="p-1 rounded-full hover:bg-orange-200 transition-colors"
+                                                >
+                                                    <Plus className="h-4 w-4" />
+                                                </button>
+                                            </div>
+                                            <div className="flex items-center space-x-3">
+                                                <p className="text-lg font-bold text-gray-900">₹{item.price * item.quantity}</p>
+                                                <button
+                                                    onClick={() => removeItem(item.id)}
+                                                    className="text-red-600 hover:text-red-700"
+                                                >
+                                                    <Trash2 className="h-4 w-4" />
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
