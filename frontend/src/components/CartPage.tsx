@@ -54,15 +54,17 @@ const CartPage: React.FC = () => {
                                     <div className="flex flex-col md:flex-row md:items-center space-y-4 md:space-y-0 md:space-x-6">
                                         {/* Row 1: Image and Product Info */}
                                         <div className="flex items-start space-x-4 flex-1">
-                                            <img
-                                                src={item.image}
-                                                alt={item.title}
-                                                className="w-20 h-20 rounded-lg object-cover bg-white flex-shrink-0"
-                                            />
-                                            <div className="flex-1 min-w-0">
-                                                <h3 className="text-lg font-semibold text-gray-900 mb-1">{item.title}</h3>
-                                                <p className="text-orange-600 font-bold">₹{item.price}</p>
-                                            </div>
+                                            <Link to={`/products/${item.id}`} className="flex items-start space-x-4 flex-1 hover:opacity-80 transition-opacity">
+                                                <img
+                                                    src={item.image}
+                                                    alt={item.title}
+                                                    className="w-20 h-20 rounded-lg object-cover bg-white flex-shrink-0"
+                                                />
+                                                <div className="flex-1 min-w-0">
+                                                    <h3 className="text-lg font-semibold text-gray-900 mb-1">{item.title}</h3>
+                                                    <p className="text-orange-600 font-bold" onClick={(e) => e.preventDefault()}>₹{item.price}</p>
+                                                </div>
+                                            </Link>
                                         </div>
 
                                         {/* Row 2: Controls, Total, Remove */}
