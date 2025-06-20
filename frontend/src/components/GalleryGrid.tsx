@@ -1,5 +1,6 @@
 import React from 'react';
-import GalleryTeaser from './GalleryTeaser';
+// import GalleryTeaser from './GalleryTeaser';
+import { Link } from 'react-router-dom';
 
 interface GalleryItem {
     id: string;
@@ -15,13 +16,20 @@ interface GalleryGridProps {
 const GalleryGrid: React.FC<GalleryGridProps> = ({ items, maxItems }) => {
     const displayItems = maxItems ? items.slice(0, maxItems) : items;
     return (
-        <section className="py-10 bg-white rounded-xl shadow-md">
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                {displayItems.map((item) => (
-                    <GalleryTeaser key={item.id} item={item} />
-                ))}
-            </div>
-        </section>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            {displayItems.map((item: any, idx: number) => (
+                <Link key={item.id} to={`/gallery/${item.id}`} className="block group">
+                    <div className="aspect-square w-full bg-white rounded shadow flex items-center justify-center overflow-hidden">
+                        <img
+                            src={`${item.image}`}
+                            alt={item.title}
+                            className="w-full h-full object-contain"
+                        />
+                    </div>
+                    <div className="mt-2 text-center font-medium">{item.title}</div>
+                </Link>
+            ))}
+        </div>
     );
 };
 

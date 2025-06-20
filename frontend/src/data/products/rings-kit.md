@@ -1,7 +1,7 @@
 ---
 id: rings-kit
 name: "String Art Rings Kit"
-price: 600
+price: 500
 short_description: >
   Precision cut wooden rings and embriodary threads for creating beautiful string art. 
 images:

@@ -46,6 +46,7 @@
   kit: "starter-kit"
   template: "C30"
   description: "Description for Three Circles."
+  featured: true
 - id: sunflower
   image: "/images/sunflower.png"
   title: "Sunflower"
@@ -62,6 +63,7 @@
   kit: "starter-kit"
   template: "C30"
   description: "Description for Four Circles."
+  featured: true
 - id: 8-pointed-star
   image: "/images/8-pointed-star.png"
   title: "8 Pointed Star"
@@ -70,6 +72,7 @@
   kit: "advanced-kit"
   template: "C30"
   description: "Description for 8 Pointed Star." 
+  featured: true
 - id: flower6
   image: "/images/flower6.png"
   title: "Flower with 6 petals"

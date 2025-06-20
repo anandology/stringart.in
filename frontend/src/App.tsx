@@ -12,17 +12,6 @@ import GalleryDetailPage from './components/GalleryDetailPage';
 import ProductsPage from './components/ProductsPage';
 import ProductDetailPage from './components/ProductDetailPage';
 
-const Home = () => (
-  <>
-    <Header />
-    <HeroSection />
-    <ProductShowcase />
-    <TestimonialSection />
-    <GalleryShowcase />
-    <Footer />
-  </>
-);
-
 const ProductsRoute = () => (
   <>
     <Header />
@@ -41,6 +30,17 @@ const App = () => {
   }, []);
 
   if (!appData || !appData.gallery) return <div>Loading...</div>;
+
+  const Home = () => (
+    <>
+      <Header />
+      <HeroSection />
+      <ProductShowcase />
+      <TestimonialSection />
+      <GalleryShowcase gallery={appData.gallery.filter((item: any) => item.featured)} />
+      <Footer />
+    </>
+  );
 
   const ProductDetailRoute = () => (
     <>

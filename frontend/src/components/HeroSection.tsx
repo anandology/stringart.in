@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const HeroSection = () => (
   <section className="bg-gradient-to-br from-orange-50 to-yellow-50 py-20">
@@ -12,12 +13,12 @@ const HeroSection = () => (
           <p className="text-xl text-gray-600 mb-8 leading-relaxed">
             Connect dots with colorful threads to create intricate geometric patterns. Watch in wonder as fascinating curves emerge from straight lines. Ready to discover what you can create?          </p>
           <div className="flex flex-col sm:flex-row gap-4">
-            <button className="bg-orange-600 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-orange-700 transition-colors shadow-lg">
+            <Link to="/products" className="bg-orange-600 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-orange-700 transition-colors shadow-lg">
               Buy a Kit
-            </button>
-            <button className="border-2 border-orange-600 text-orange-600 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-orange-50 transition-colors">
+            </Link>
+            <Link to="/gallery" className="border-2 border-orange-600 text-orange-600 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-orange-50 transition-colors">
               View Gallery
-            </button>
+            </Link>
           </div>
         </div>
         <div className="relative">

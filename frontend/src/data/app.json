@@ -106,7 +106,8 @@
       "date": "2024-06-01",
       "kit": "starter-kit",
       "template": "C30",
-      "description": "Description for Three Circles."
+      "description": "Description for Three Circles.",
+      "featured": true
     },
     {
       "id": "sunflower",
@@ -126,7 +127,8 @@
       "date": "2024-06-01",
       "kit": "starter-kit",
       "template": "C30",
-      "description": "Description for Four Circles."
+      "description": "Description for Four Circles.",
+      "featured": true
     },
     {
       "id": "8-pointed-star",
@@ -136,7 +138,8 @@
       "date": "2024-06-01",
       "kit": "advanced-kit",
       "template": "C30",
-      "description": "Description for 8 Pointed Star."
+      "description": "Description for 8 Pointed Star.",
+      "featured": true
     },
     {
       "id": "flower6",

@@ -1,18 +1,13 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
+import GalleryGrid from './GalleryGrid';
 
-const patterns = [
-  { name: "Spiral Galaxy", difficulty: "Beginner" },
-  { name: "Geometric Rose", difficulty: "Intermediate" },
-  { name: "Mandala Circle", difficulty: "Advanced" },
-  { name: "Star Burst", difficulty: "Beginner" },
-  { name: "Celtic Knot", difficulty: "Advanced" },
-  { name: "Flower Petals", difficulty: "Intermediate" },
-  { name: "Triangle Mesh", difficulty: "Beginner" },
-  { name: "Heart Shape", difficulty: "Intermediate" }
-];
+interface GalleryShowcaseProps {
+  gallery: any[];
+}
 
-const GalleryShowcase = () => {
+const GalleryShowcase: React.FC<GalleryShowcaseProps> = ({ gallery }) => {
   return (
     <section className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -24,7 +19,7 @@ const GalleryShowcase = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
+        {/* <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
           {patterns.map((pattern, index) => (
             <div key={index} className="group cursor-pointer">
               <div className="bg-gradient-to-br from-orange-100 to-yellow-100 rounded-xl aspect-square flex items-center justify-center shadow-md group-hover:shadow-lg transition-shadow mb-3">
@@ -36,16 +31,23 @@ const GalleryShowcase = () => {
               <h4 className="font-semibold text-gray-900 text-center">{pattern.name}</h4>
             </div>
           ))}
-        </div>
+        </div> */}
 
-        <div className="text-center">
-          <button className="bg-orange-600 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-orange-700 transition-colors shadow-lg inline-flex items-center">
+        <GalleryGrid items={gallery} maxItems={3} />
+
+        <div className="text-center pt-10">
+          <Link
+            to="/gallery"
+            //className="bg-orange-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-orange-700 transition-colors text-center"
+            className="bg-orange-600 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-orange-700 transition-colors shadow-lg inline-flex items-center"
+          >
             View Full Gallery
             <ArrowRight className="ml-2 h-5 w-5" />
-          </button>
+          </Link>
+
         </div>
       </div>
-    </section>
+    </section >
   );
 };
 
