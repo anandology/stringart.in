@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import HeroSection from './components/HeroSection';
-import ProductShowcase from './components/ProductShowcase';
+import GettingStartedVideo from './components/GettingStartedVideo';
 import TestimonialSection from './components/TestimonialSection';
 import GalleryShowcase from './components/GalleryShowcase';
 import Footer from './components/Footer';
@@ -54,7 +54,11 @@ const App = () => {
     <>
       <Header />
       <HeroSection heroImages={appData.home?.hero_images} />
-      <ProductShowcase />
+      <GettingStartedVideo
+        videoUrl={appData.home?.video_url}
+        videoTitle={appData.home?.video_title}
+        videoDuration={appData.home?.video_duration}
+      />
       <TestimonialSection />
       <GalleryShowcase gallery={appData.gallery} />
       <Footer />
