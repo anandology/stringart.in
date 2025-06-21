@@ -8,7 +8,7 @@ interface GettingStartedVideoProps {
 }
 
 const GettingStartedVideo: React.FC<GettingStartedVideoProps> = ({
-  videoUrl = "https://www.youtube.com/embed/dQw4w9WgXcQ",
+  videoUrl = "https://www.youtube.com/embed/VyvIQM0nCbI",
   videoTitle = "Getting Started with String Art",
   videoDuration = "5 min"
 }) => {

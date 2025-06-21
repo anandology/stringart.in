@@ -59,7 +59,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ products = [], gallery = { en
                         {/* Replace the src with your actual tutorial video URL */}
                         <iframe
                             className="w-full h-full rounded-lg shadow"
-                            src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                            src="https://www.youtube.com/embed/VyvIQM0nCbI"
                             title="String Art Tutorial"
                             frameBorder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

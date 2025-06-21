@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Header from './components/Header';
 import HeroSection from './components/HeroSection';
@@ -16,6 +16,11 @@ import CheckoutForm from './components/CheckoutForm';
 import PaymentConfirmationPage from './components/PaymentConfirmationPage';
 import PaymentInstructionsPage from './components/PaymentInstructionsPage';
 import { CartProvider } from './components/CartContext';
+import type { AppData } from './types';
+import AboutPage from './components/AboutPage';
+import ShippingPage from './components/ShippingPage';
+import FAQPage from './components/FAQPage';
+import ContactPage from './components/ContactPage';
 
 const ProductsRoute = () => (
   <>
@@ -50,7 +55,7 @@ const PaymentConfirmationRoute = () => (
 );
 
 const App = () => {
-  const [appData, setAppData] = useState<any | null>(null);
+  const [appData, setAppData] = useState<AppData | null>(null);
 
   useEffect(() => {
     fetch('/app.json')
@@ -111,6 +116,10 @@ const App = () => {
           <Route path="/checkout" element={<CheckoutRoute />} />
           <Route path="/payment-confirmation" element={<PaymentConfirmationRoute />} />
           <Route path="/payment-instructions" element={<PaymentInstructionsPage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/shipping" element={<ShippingPage />} />
+          <Route path="/faq" element={<FAQPage />} />
+          <Route path="/contact" element={<ContactPage />} />
         </Routes>
       </Router>
     </CartProvider>
