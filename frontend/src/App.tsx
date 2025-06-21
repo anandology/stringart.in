@@ -13,6 +13,7 @@ import ProductsPage from './components/ProductsPage';
 import ProductDetailPage from './components/ProductDetailPage';
 import CartPage from './components/CartPage';
 import CheckoutForm from './components/CheckoutForm';
+import PaymentConfirmationPage from './components/PaymentConfirmationPage';
 import { CartProvider } from './components/CartContext';
 
 const ProductsRoute = () => (
@@ -35,6 +36,14 @@ const CheckoutRoute = () => (
   <>
     <Header />
     <CheckoutForm />
+    <Footer />
+  </>
+);
+
+const PaymentConfirmationRoute = () => (
+  <>
+    <Header />
+    <PaymentConfirmationPage />
     <Footer />
   </>
 );
@@ -99,6 +108,7 @@ const App = () => {
           <Route path="/products/:id" element={<ProductDetailRoute />} />
           <Route path="/cart" element={<CartRoute />} />
           <Route path="/checkout" element={<CheckoutRoute />} />
+          <Route path="/payment-confirmation" element={<PaymentConfirmationRoute />} />
         </Routes>
       </Router>
     </CartProvider>

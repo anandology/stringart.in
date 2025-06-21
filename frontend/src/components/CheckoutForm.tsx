@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { ArrowLeft } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useCart } from './CartContext';
+import { checkoutApi } from '../services/api';
 
 interface CheckoutFormData {
     name: string;
@@ -15,7 +16,8 @@ interface CheckoutFormData {
 }
 
 const CheckoutForm: React.FC = () => {
-    const { state } = useCart();
+    const { state, clearCart } = useCart();
+    const navigate = useNavigate();
     const [formData, setFormData] = useState<CheckoutFormData>({
         name: '',
         email: '',
@@ -27,6 +29,7 @@ const CheckoutForm: React.FC = () => {
         pinCode: '',
     });
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [error, setError] = useState<string>('');
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
@@ -50,24 +53,37 @@ const CheckoutForm: React.FC = () => {
         if (!isFormValid()) return;
 
         setIsSubmitting(true);
+        setError('');
 
         try {
-            // TODO: Integrate with checkout API
-            console.log('Checkout data:', {
+            const checkoutData = {
                 customer: formData,
                 items: state.items,
-                total: state.totalPrice
-            });
+                totalPrice: state.totalPrice
+            };
 
-            // Simulate API call
-            await new Promise(resolve => setTimeout(resolve, 1000));
+            const response = await checkoutApi(checkoutData);
 
-            // TODO: Handle successful checkout (redirect to payment, show confirmation, etc.)
-            alert('Checkout functionality will be integrated with payment gateway');
+            if (response.success) {
+                // Clear cart after successful checkout
+                clearCart();
 
+                // Navigate to payment confirmation page
+                navigate('/payment-confirmation', {
+                    state: {
+                        orderNumber: response.orderNumber,
+                        paymentLink: response.paymentLink || '',
+                        totalAmount: state.totalPrice,
+                        customer: formData,
+                        items: state.items
+                    }
+                });
+            } else {
+                setError(response.error || 'Unable to complete. Please try again after sometime.');
+            }
         } catch (error) {
             console.error('Checkout error:', error);
-            alert('Checkout failed. Please try again.');
+            setError('Unable to complete. Please try again after sometime.');
         } finally {
             setIsSubmitting(false);
         }
@@ -267,6 +283,12 @@ const CheckoutForm: React.FC = () => {
                             >
                                 {isSubmitting ? 'Processing...' : 'Proceed to Payment'}
                             </button>
+
+                            {error && (
+                                <div className="text-red-600 text-sm text-center mb-4">
+                                    {error}
+                                </div>
+                            )}
 
                             <Link
                                 to="/cart"
