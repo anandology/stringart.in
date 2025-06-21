@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import { QRCodeSVG } from 'qrcode.react';
-import { ArrowLeft, ExternalLink, CheckCircle, User, MapPin, Package } from 'lucide-react';
+import { ArrowLeft, ExternalLink, CheckCircle, User, MapPin, Package, ChevronDown, ChevronUp } from 'lucide-react';
 
 interface PaymentConfirmationData {
     orderNumber: string;
@@ -29,6 +29,7 @@ interface PaymentConfirmationData {
 const PaymentConfirmationPage: React.FC = () => {
     const location = useLocation();
     const data = location.state as PaymentConfirmationData;
+    const [showOrderDetails, setShowOrderDetails] = useState(false);
 
     if (!data) {
         return (
@@ -54,6 +55,10 @@ const PaymentConfirmationPage: React.FC = () => {
 
     const subtotal = data.items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
 
+    const handleToggleDetails = () => {
+        setShowOrderDetails(!showOrderDetails);
+    };
+
     return (
         <div className="min-h-screen bg-white py-16">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -69,9 +74,22 @@ const PaymentConfirmationPage: React.FC = () => {
                     <div className="lg:col-span-2 space-y-6">
                         {/* Order Summary */}
                         <div className="bg-orange-50 rounded-xl p-6">
-                            <div className="flex items-center mb-4">
-                                <Package className="h-5 w-5 text-orange-600 mr-2" />
-                                <h2 className="text-xl font-bold text-gray-900">Order Summary</h2>
+                            <div className="flex items-center justify-between mb-4">
+                                <div className="flex items-center">
+                                    <Package className="h-5 w-5 text-orange-600 mr-2" />
+                                    <h2 className="text-xl font-bold text-gray-900">Order Summary</h2>
+                                </div>
+                                <button
+                                    onClick={handleToggleDetails}
+                                    className="lg:hidden flex items-center text-orange-600 hover:text-orange-700 font-medium"
+                                >
+                                    {showOrderDetails ? 'Hide Details' : 'View Details'}
+                                    {showOrderDetails ? (
+                                        <ChevronUp className="h-4 w-4 ml-1" />
+                                    ) : (
+                                        <ChevronDown className="h-4 w-4 ml-1" />
+                                    )}
+                                </button>
                             </div>
                             <div className="space-y-3">
                                 <div className="flex justify-between">
@@ -85,8 +103,8 @@ const PaymentConfirmationPage: React.FC = () => {
                             </div>
                         </div>
 
-                        {/* Customer Information */}
-                        <div className="bg-white border border-gray-200 rounded-xl p-6">
+                        {/* Customer Information - Hidden on mobile by default */}
+                        <div className="hidden lg:block bg-white border border-gray-200 rounded-xl p-6">
                             <div className="flex items-center mb-4">
                                 <User className="h-5 w-5 text-gray-600 mr-2" />
                                 <h3 className="text-lg font-semibold text-gray-900">Customer Information</h3>
@@ -98,8 +116,8 @@ const PaymentConfirmationPage: React.FC = () => {
                             </div>
                         </div>
 
-                        {/* Shipping Address */}
-                        <div className="bg-white border border-gray-200 rounded-xl p-6">
+                        {/* Shipping Address - Hidden on mobile by default */}
+                        <div className="hidden lg:block bg-white border border-gray-200 rounded-xl p-6">
                             <div className="flex items-center mb-4">
                                 <MapPin className="h-5 w-5 text-gray-600 mr-2" />
                                 <h3 className="text-lg font-semibold text-gray-900">Shipping Address</h3>
@@ -113,8 +131,8 @@ const PaymentConfirmationPage: React.FC = () => {
                             </div>
                         </div>
 
-                        {/* Order Items */}
-                        <div className="bg-white border border-gray-200 rounded-xl p-6">
+                        {/* Order Items - Hidden on mobile by default */}
+                        <div className="hidden lg:block bg-white border border-gray-200 rounded-xl p-6">
                             <h3 className="text-lg font-semibold text-gray-900 mb-4">Order Items</h3>
                             <div className="space-y-4">
                                 {data.items.map((item) => (
@@ -152,6 +170,79 @@ const PaymentConfirmationPage: React.FC = () => {
                                 </div>
                             </div>
                         </div>
+
+                        {/* Mobile Order Details - Collapsible */}
+                        {showOrderDetails && (
+                            <div className="lg:hidden space-y-6">
+                                {/* Customer Information */}
+                                <div className="bg-white border border-gray-200 rounded-xl p-6">
+                                    <div className="flex items-center mb-4">
+                                        <User className="h-5 w-5 text-gray-600 mr-2" />
+                                        <h3 className="text-lg font-semibold text-gray-900">Customer Information</h3>
+                                    </div>
+                                    <div className="space-y-2">
+                                        <p className="text-gray-900"><span className="font-medium">Name:</span> {data.customer.name}</p>
+                                        <p className="text-gray-900"><span className="font-medium">Email:</span> {data.customer.email}</p>
+                                        <p className="text-gray-900"><span className="font-medium">Phone:</span> {data.customer.phone}</p>
+                                    </div>
+                                </div>
+
+                                {/* Shipping Address */}
+                                <div className="bg-white border border-gray-200 rounded-xl p-6">
+                                    <div className="flex items-center mb-4">
+                                        <MapPin className="h-5 w-5 text-gray-600 mr-2" />
+                                        <h3 className="text-lg font-semibold text-gray-900">Shipping Address</h3>
+                                    </div>
+                                    <div className="space-y-1">
+                                        <p className="text-gray-900">{data.customer.addressLine1}</p>
+                                        {data.customer.addressLine2 && (
+                                            <p className="text-gray-900">{data.customer.addressLine2}</p>
+                                        )}
+                                        <p className="text-gray-900">{data.customer.city}, {data.customer.state} {data.customer.pinCode}</p>
+                                    </div>
+                                </div>
+
+                                {/* Order Items */}
+                                <div className="bg-white border border-gray-200 rounded-xl p-6">
+                                    <h3 className="text-lg font-semibold text-gray-900 mb-4">Order Items</h3>
+                                    <div className="space-y-4">
+                                        {data.items.map((item) => (
+                                            <div key={item.id} className="flex items-center space-x-4">
+                                                <img
+                                                    src={item.image}
+                                                    alt={item.title}
+                                                    className="w-16 h-16 object-cover rounded-lg"
+                                                />
+                                                <div className="flex-1">
+                                                    <h4 className="font-medium text-gray-900">{item.title}</h4>
+                                                    <p className="text-sm text-gray-600">Qty: {item.quantity}</p>
+                                                </div>
+                                                <div className="text-right">
+                                                    <p className="font-medium text-gray-900">₹{item.price * item.quantity}</p>
+                                                    <p className="text-sm text-gray-600">₹{item.price} each</p>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+
+                                    {/* Order Totals */}
+                                    <div className="border-t pt-4 mt-4 space-y-2">
+                                        <div className="flex justify-between">
+                                            <span className="text-gray-600">Subtotal:</span>
+                                            <span className="font-medium">₹{subtotal}</span>
+                                        </div>
+                                        <div className="flex justify-between">
+                                            <span className="text-gray-600">Shipping:</span>
+                                            <span className="font-medium text-green-600">Free</span>
+                                        </div>
+                                        <div className="flex justify-between border-t pt-2">
+                                            <span className="text-lg font-bold text-gray-900">Total:</span>
+                                            <span className="text-lg font-bold text-gray-900">₹{data.totalAmount}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
                     </div>
 
                     {/* Payment Section - Right side */}
