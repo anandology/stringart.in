@@ -27,13 +27,29 @@ interface CheckoutResponse {
     error?: string;
 }
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '/api';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
 
 export const checkoutApi = async (data: CheckoutRequest): Promise<CheckoutResponse> => {
     try {
-        // Dummy implementation - simulate API call
         console.log('Checkout API called with:', data);
 
+        const response = await fetch(`${API_BASE_URL}/api/checkout`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json().catch(() => ({}));
+            throw new Error(errorData.detail || `HTTP error! status: ${response.status}`);
+        }
+
+        return await response.json();
+
+        // Dummy implementation - commented out for real API
+        /*
         // Simulate network delay
         await new Promise(resolve => setTimeout(resolve, 1000));
 
@@ -48,22 +64,6 @@ export const checkoutApi = async (data: CheckoutRequest): Promise<CheckoutRespon
             paymentLink,
             qrCodeUrl: paymentLink // QR code will be generated from this URL
         };
-
-        // Uncomment below for actual API call
-        /*
-        const response = await fetch(`${API_BASE_URL}/checkout`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(data),
-        });
-        
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        
-        return await response.json();
         */
 
     } catch (error) {
@@ -71,7 +71,7 @@ export const checkoutApi = async (data: CheckoutRequest): Promise<CheckoutRespon
         return {
             success: false,
             orderNumber: '',
-            error: 'Unable to complete. Please try again after sometime.'
+            error: error instanceof Error ? error.message : 'Unable to complete. Please try again after sometime.'
         };
     }
 }; 

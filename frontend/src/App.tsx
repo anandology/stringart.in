@@ -14,6 +14,7 @@ import ProductDetailPage from './components/ProductDetailPage';
 import CartPage from './components/CartPage';
 import CheckoutForm from './components/CheckoutForm';
 import PaymentConfirmationPage from './components/PaymentConfirmationPage';
+import PaymentInstructionsPage from './components/PaymentInstructionsPage';
 import { CartProvider } from './components/CartContext';
 
 const ProductsRoute = () => (
@@ -109,6 +110,7 @@ const App = () => {
           <Route path="/cart" element={<CartRoute />} />
           <Route path="/checkout" element={<CheckoutRoute />} />
           <Route path="/payment-confirmation" element={<PaymentConfirmationRoute />} />
+          <Route path="/payment-instructions" element={<PaymentInstructionsPage />} />
         </Routes>
       </Router>
     </CartProvider>
