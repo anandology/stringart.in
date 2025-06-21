@@ -1,0 +1,190 @@
+{
+  "products": [
+    {
+      "id": "starter-kit",
+      "title": "String Art Starter Kit",
+      "price": 500,
+      "short_description": "Everything you need to create your first string art masterpiece.  Kids friendly. \n",
+      "images": [
+        "/stringart-logo.png",
+        "/images/kichimu.png"
+      ],
+      "includes": [
+        "20 precision laser-cut templates out of think paper",
+        "4 rolls of colorful thread",
+        "stickers to keep thread in place"
+      ],
+      "similar_products": [
+        "advanced-kit",
+        "rings-kit"
+      ],
+      "description_html": "<p>Long description of starter kit.</p>\n"
+    },
+    {
+      "id": "advanced-kit",
+      "title": "String Art Advanced Kit",
+      "price": 500,
+      "short_description": "Advanced patterns for serious creators. Requires working with a needle.\n",
+      "images": [
+        "/images/8-pointed-star.png",
+        "/images/products/advanced-kit-2.jpg"
+      ],
+      "includes": [
+        "20 precision laser-cut templates out of think paper",
+        "4 rolls of colorful thread",
+        "stickers to keep thread in place"
+      ],
+      "description_html": "<p>Long description.</p>\n"
+    },
+    {
+      "id": "rings-kit",
+      "title": "String Art Rings Kit",
+      "price": 500,
+      "short_description": "Precision cut wooden rings and embriodary threads for creating beautiful string art. \n",
+      "images": [
+        "/images/rings-double-loop.png"
+      ],
+      "includes": [
+        "6 rings of precision laser-cut templates",
+        "5 embriodary threads of assorted colors (each 8m long)"
+      ],
+      "similar_products": [
+        "starter-kit"
+      ],
+      "description_html": "<p>Long description</p>\n"
+    }
+  ],
+  "gallery": {
+    "entries": {
+      "boat": {
+        "id": "boat",
+        "image": "/images/boat.png",
+        "title": "Boat",
+        "author": "Author Name",
+        "date": "2024-06-01",
+        "kit": "starter-kit",
+        "template": "C30",
+        "description_html": "<p>Description for Boat.</p>\n"
+      },
+      "square": {
+        "id": "square",
+        "image": "/images/square.png",
+        "title": "Square",
+        "author": "Author Name",
+        "date": "2024-06-01",
+        "kit": "starter-kit",
+        "template": "C30",
+        "description_html": "<p>Description for Square.</p>\n"
+      },
+      "12point-mystic-rose": {
+        "id": "12point-mystic-rose",
+        "image": "/images/12point-mystic-rose.png",
+        "title": "12point Mystic Rose",
+        "author": "Author Name",
+        "date": "2024-06-01",
+        "kit": "starter-kit",
+        "template": "C30",
+        "description_html": "<p>Description for 12point Mystic Rose.</p>\n"
+      },
+      "dewdrop": {
+        "id": "dewdrop",
+        "image": "/images/dewdrop.png",
+        "title": "Dewdrop",
+        "author": "Author Name",
+        "date": "2024-06-01",
+        "kit": "starter-kit",
+        "template": "C30",
+        "description_html": "<p>Description for Dewdrop.</p>\n"
+      },
+      "kichimu": {
+        "id": "kichimu",
+        "image": "/images/kichimu.png",
+        "title": "Kichimu",
+        "author": "Author Name",
+        "date": "2024-06-01",
+        "kit": "starter-kit",
+        "template": "C30",
+        "description_html": "<p>Description for Kichimu.</p>\n"
+      },
+      "three-circles": {
+        "id": "three-circles",
+        "image": "/images/three-circles.png",
+        "title": "Three Circles",
+        "author": "Author Name",
+        "date": "2024-06-01",
+        "kit": "starter-kit",
+        "template": "C30",
+        "featured": true,
+        "description_html": "<p>Description for Three Circles.</p>\n"
+      },
+      "sunflower": {
+        "id": "sunflower",
+        "image": "/images/sunflower.png",
+        "title": "Sunflower",
+        "author": "Author Name",
+        "date": "2024-06-01",
+        "kit": "advanced-kit",
+        "template": "C30",
+        "description_html": "<p>Description for Sunflower.</p>\n"
+      },
+      "four-circles": {
+        "id": "four-circles",
+        "image": "/images/four-circles.png",
+        "title": "Four Circles",
+        "author": "Author Name",
+        "date": "2024-06-01",
+        "kit": "starter-kit",
+        "template": "C30",
+        "featured": true,
+        "description_html": "<p>Description for Four Circles.</p>\n"
+      },
+      "8-pointed-star": {
+        "id": "8-pointed-star",
+        "image": "/images/8-pointed-star.png",
+        "title": "8 Pointed Star",
+        "author": "Author Name",
+        "date": "2024-06-01",
+        "kit": "advanced-kit",
+        "template": "C30",
+        "featured": true,
+        "description_html": "<p>Description for 8 Pointed Star.</p>\n"
+      },
+      "flower6": {
+        "id": "flower6",
+        "image": "/images/flower6.png",
+        "title": "Flower with 6 petals",
+        "author": "Author Name",
+        "date": "2024-06-01",
+        "kit": "advanced-kit",
+        "template": "C30",
+        "description_html": "<p>The flower is made out of parabolas generated by string art.\nEach petal is smade of two parabolas.</p>\n"
+      }
+    },
+    "ids": [
+      "boat",
+      "square",
+      "12point-mystic-rose",
+      "dewdrop",
+      "kichimu",
+      "three-circles",
+      "sunflower",
+      "four-circles",
+      "8-pointed-star",
+      "flower6"
+    ],
+    "featured": [
+      "three-circles",
+      "four-circles",
+      "8-pointed-star"
+    ]
+  },
+  "home": {
+    "hero_images": [
+      "/images/three-circles.png",
+      "/images/four-circles.png",
+      "/images/8-pointed-star.png",
+      "/images/boat.png",
+      "/images/sunflower.png"
+    ]
+  }
+}
