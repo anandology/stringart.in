@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation - {{ order_number }}</title>
+    <style>
+        /* Reset and base styles */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #374151;
+            background-color: #f3f4f6;
+        }
+
+        .email-wrapper {
+            background-color: #f3f4f6;
+            padding: 20px 0;
+        }
+
+        .email-container {
+            width: 500px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Header with branding */
+        .header {
+            background-color: #ffffff;
+            padding: 30px 40px;
+            text-align: center;
+            border-bottom: 3px solid #ea580c;
+        }
+
+        .brand-title {
+            color: #ea580c;
+            font-size: 28px;
+            font-weight: 700;
+            margin: 0;
+            letter-spacing: -0.5px;
+        }
+
+        .order-status {
+            color: #059669;
+            font-size: 18px;
+            font-weight: 600;
+            margin: 10px 0 0 0;
+        }
+
+        .order-number {
+            color: #6b7280;
+            font-size: 14px;
+            margin: 5px 0 0 0;
+        }
+
+        .content {
+            padding: 30px 40px;
+        }
+
+        /* Compact order summary */
+        .order-summary {
+            background-color: #fef3c7;
+            border: 1px solid #f59e0b;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .summary-row:last-child {
+            margin-bottom: 0;
+            padding-top: 12px;
+            border-top: 1px solid #f59e0b;
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .label {
+            color: #6b7280;
+            font-size: 14px;
+        }
+
+        .value {
+            font-weight: 500;
+            color: #111827;
+        }
+
+        /* Combined information card */
+        .info-card {
+            background-color: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            overflow: hidden;
+        }
+
+        .card-section {
+            padding: 20px;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .card-section:last-child {
+            border-bottom: none;
+        }
+
+        .section-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #374151;
+            margin: 0 0 15px 0;
+        }
+
+        .customer-grid {
+            display: block;
+        }
+
+        .info-item {
+            margin-bottom: 8px;
+        }
+
+        .info-row {
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .info-label {
+            font-weight: 500;
+            color: #6b7280;
+            margin-right: 8px;
+        }
+
+        .info-value {
+            color: #111827;
+            font-weight: 500;
+        }
+
+        .address {
+            line-height: 1.5;
+            font-size: 14px;
+        }
+
+        .order-items {
+            margin-top: 15px;
+        }
+
+        .item {
+            display: flex;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .item:last-child {
+            border-bottom: none;
+        }
+
+        .item-image {
+            width: 40px;
+            height: 40px;
+            background-color: #f3f4f6;
+            border-radius: 6px;
+            margin-right: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #9ca3af;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .item-details {
+            flex: 1;
+        }
+
+        .item-title {
+            font-weight: 500;
+            color: #111827;
+            margin-bottom: 3px;
+            font-size: 14px;
+        }
+
+        .item-quantity {
+            font-size: 12px;
+            color: #6b7280;
+        }
+
+        .item-price {
+            text-align: right;
+        }
+
+        .item-total {
+            font-weight: 500;
+            color: #111827;
+            font-size: 14px;
+        }
+
+        .item-unit {
+            font-size: 11px;
+            color: #6b7280;
+        }
+
+        /* Payment section - prioritized */
+        .payment-section {
+            background-color: #eff6ff;
+            border: 2px solid #3b82f6;
+            border-radius: 8px;
+            padding: 25px;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .payment-section h3 {
+            margin: 0 0 15px 0;
+            font-size: 18px;
+            font-weight: 600;
+            color: #1e40af;
+        }
+
+        .upi-id-display {
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 16px;
+            font-weight: 600;
+            color: #1e293b;
+        }
+
+        .payment-button {
+            display: inline-block;
+            background-color: #ea580c;
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 500;
+            margin: 15px 10px;
+            font-size: 14px;
+        }
+
+        .payment-button:hover {
+            background-color: #dc2626;
+        }
+
+        .payment-button.secondary {
+            background-color: #3b82f6;
+        }
+
+        .payment-button.secondary:hover {
+            background-color: #2563eb;
+        }
+
+        /* Instructions */
+        .instructions {
+            background-color: #f0f9ff;
+            border: 1px solid #0ea5e9;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+
+        .instructions h3 {
+            margin: 0 0 12px 0;
+            font-size: 16px;
+            font-weight: 600;
+            color: #0c4a6e;
+        }
+
+        .instructions ol {
+            margin: 0;
+            padding-left: 18px;
+        }
+
+        .instructions li {
+            margin-bottom: 6px;
+            color: #0c4a6e;
+            font-size: 14px;
+        }
+
+        .footer {
+            background-color: #f9fafb;
+            padding: 25px 40px;
+            text-align: center;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .footer p {
+            margin: 5px 0;
+            color: #6b7280;
+            font-size: 13px;
+        }
+
+        .footer .brand {
+            font-weight: 600;
+            color: #ea580c;
+        }
+
+        /* Responsive design */
+        @media only screen and (max-width: 520px) {
+            .email-container {
+                width: 100%;
+                margin: 0;
+                border-radius: 0;
+            }
+
+            .header,
+            .content {
+                padding: 20px;
+            }
+
+            .info-row {
+                font-size: 13px;
+            }
+
+            .card-section {
+                padding: 15px;
+            }
+
+            .payment-button {
+                display: block;
+                margin: 10px 0;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="email-wrapper">
+        <div class="email-container">
+            <!-- Header with branding -->
+            <div class="header">
+                <h1 class="brand-title">String Art Studio</h1>
+                <p class="order-status">Order Confirmed!</p>
+                <p class="order-number">Order #{{ order_number }}</p>
+            </div>
+
+            <div class="content">
+                <!-- Payment Section - Prioritized -->
+                <div class="payment-section">
+                    <h3>Complete Your Payment</h3>
+                    <p style="margin-bottom: 15px; color: #1e40af; font-size: 14px;">Please make the payment of
+                        <strong>₹{{ "%.2f"|format(total_price) }}</strong> to the UPI ID below
+                    </p>
+
+                    <div class="upi-id-display">
+                        {{ upi_id }}
+                    </div>
+
+                    <a href="{{ payment_instructions_url }}" class="payment-button secondary">Payment Instructions</a>
+
+                    <p style="font-size: 12px; color: #6b7280; margin-top: 15px;">
+                        Use any UPI app to pay to the above UPI ID
+                    </p>
+                    <p style="font-size: 13px; color: #374151; margin-top: 10px;">
+                        <strong>After making the payment, please reply to this email to confirm your payment.</strong>
+                    </p>
+                </div>
+
+                <!-- Order Summary -->
+                <div class="order-summary">
+                    <div class="summary-row">
+                        <span class="label">Total Amount:</span>
+                        <span class="value">₹{{ "%.2f"|format(total_price) }}</span>
+                    </div>
+                </div>
+
+                <!-- Combined Information Card -->
+                <div class="info-card">
+                    <!-- Customer Information -->
+                    <div class="card-section">
+                        <h3 class="section-title">Customer Information</h3>
+                        <div class="customer-grid">
+                            <div class="info-item">
+                                <div class="info-row">
+                                    <span class="info-label">Name:</span>
+                                    <span class="info-value">{{ customer.name }}</span>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-row">
+                                    <span class="info-label">E-mail:</span>
+                                    <span class="info-value">{{ customer.email }}</span>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-row">
+                                    <span class="info-label">Phone:</span>
+                                    <span class="info-value">{{ customer.phone }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Shipping Address -->
+                    <div class="card-section">
+                        <h3 class="section-title">Shipping Address</h3>
+                        <div class="address">
+                            {{ customer.addressLine1 }}<br>
+                            {% if customer.addressLine2 %}{{ customer.addressLine2 }}<br>{% endif %}
+                            {{ customer.city }}, {{ customer.state }} {{ customer.pinCode }}
+                        </div>
+                    </div>
+
+                    <!-- Order Items -->
+                    <div class="card-section">
+                        <h3 class="section-title">Order Items</h3>
+                        <div class="order-items">
+                            {% for item in items %}
+                            <div class="item">
+                                <div class="item-image">
+                                    {{ item.title[:2].upper() }}
+                                </div>
+                                <div class="item-details">
+                                    <div class="item-title">{{ item.title }}</div>
+                                    <div class="item-quantity">Qty: {{ item.quantity }}</div>
+                                </div>
+                                <div class="item-price">
+                                    <div class="item-total">₹{{ "%.2f"|format(item.price * item.quantity) }}</div>
+                                    <div class="item-unit">₹{{ "%.2f"|format(item.price) }} each</div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+
+                        <!-- Order Totals -->
+                        <div style="border-top: 1px solid #e5e7eb; padding-top: 15px; margin-top: 15px;">
+                            <div class="summary-row">
+                                <span class="label">Subtotal:</span>
+                                <span class="value">₹{{ "%.2f"|format(total_price) }}</span>
+                            </div>
+                            <div class="summary-row">
+                                <span class="label">Shipping:</span>
+                                <span class="value" style="color: #059669;">Free</span>
+                            </div>
+                            <div class="summary-row">
+                                <span class="label">Total:</span>
+                                <span class="value">₹{{ "%.2f"|format(total_price) }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Instructions -->
+                <div class="instructions">
+                    <h3>Next Steps</h3>
+                    <ol>
+                        <li>Complete the payment using the QR code or payment link above</li>
+                        <li>Reply to this email to confirm your payment</li>
+                        <li>We'll process your order once payment is confirmed</li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="footer">
+                <p>Thank you for choosing <span class="brand">String Art Studio</span></p>
+                <p>If you have any questions, please reply to this email</p>
+                <p style="margin-top: 15px; font-size: 11px; color: #9ca3af;">
+                    This is an automated email. Please do not reply if you have not placed an order.
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

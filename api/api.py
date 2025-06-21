@@ -6,6 +6,17 @@ import uuid
 from datetime import datetime
 import logging
 import os
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+from email.utils import formataddr
+import json
+from pathlib import Path
+import qrcode
+import io
+import base64
+from jinja2 import Environment, FileSystemLoader
+from urllib.parse import urlencode
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -53,7 +64,6 @@ class CartItem(BaseModel):
     id: str
     title: str
     price: float
-    image: str
     quantity: int
     
     @validator('price')
@@ -101,63 +111,181 @@ class CheckoutResponse(BaseModel):
 # Configuration
 UPI_ID = os.getenv("UPI_ID", "stringart@upi")
 PAYEE_NAME = os.getenv("PAYEE_NAME", "StringArt")
+GMAIL_FROM_ADDRESS = os.getenv("GMAIL_FROM_ADDRESS", "orders@stringart.in")
+PAYMENT_INSTRUCTIONS_LINK = os.getenv("PAYMENT_INSTRUCTIONS_LINK", "https://stringart.in/payment-instructions")
+
+# Create orders directory if it doesn't exist
+ORDERS_DIR = Path("orders")
+ORDERS_DIR.mkdir(exist_ok=True)
+
+# Setup Jinja2 template environment
+TEMPLATE_DIR = Path("templates")
+template_env = Environment(loader=FileSystemLoader(TEMPLATE_DIR))
 
 # In-memory storage for orders (replace with database in production)
 orders_db = {}
 
+def get_next_order_sequence() -> int:
+    """Get the next order sequence number by checking existing files"""
+    try:
+        existing_files = list(ORDERS_DIR.glob("*.json"))
+        if not existing_files:
+            return 1
+        
+        # Extract sequence numbers from filenames and find the max
+        sequence_numbers = []
+        for file_path in existing_files:
+            try:
+                sequence = int(file_path.stem)
+                sequence_numbers.append(sequence)
+            except ValueError:
+                continue
+        
+        return max(sequence_numbers) + 1 if sequence_numbers else 1
+    except Exception as e:
+        logger.error(f"Error getting next order sequence: {e}")
+        return 1
+
+def save_order_to_file(order_data: dict) -> str:
+    """Save order data to a JSON file with sequential numbering"""
+    try:
+        sequence = get_next_order_sequence()
+        filename = f"{sequence:03d}.json"  # 001.json, 002.json, etc.
+        file_path = ORDERS_DIR / filename
+        
+        with open(file_path, 'w', encoding='utf-8') as f:
+            json.dump(order_data, f, indent=2, ensure_ascii=False)
+        
+        logger.info(f"Order saved to file: {file_path}")
+        return filename
+    except Exception as e:
+        logger.error(f"Error saving order to file: {e}")
+        raise
+
 def generate_order_number() -> str:
-    """Generate unique order number with timestamp"""
-    timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
-    unique_id = str(uuid.uuid4())[:8]
-    return f"ORD{timestamp}{unique_id}"
+    """Generate order number based on next sequence number"""
+    sequence = get_next_order_sequence()
+    return f"{sequence:03d}"  # 001, 002, etc.
 
 def create_upi_payment_link(order_number: str, amount: float) -> str:
     """Create UPI payment link with proper parameters"""
     return f"upi://pay?pa={UPI_ID}&pn={PAYEE_NAME}&am={amount}&tn={order_number}"
 
 async def send_confirmation_email(customer: CustomerInfo, order_number: str, items: List[CartItem], total_price: float):
-    """Send confirmation email to customer (implement with your email service)"""
-    # TODO: Implement email sending logic
-    # Example: Send email with order details and UPI QR code
-    logger.info(f"Sending confirmation email to {customer.email} for order {order_number}")
-    
-    # Placeholder for email implementation
-    # You can use libraries like:
-    # - smtplib for basic SMTP
-    # - sendgrid for SendGrid service
-    # - boto3 for AWS SES
-    # - resend for Resend service
-    
-    email_content = f"""
-    Order Confirmation - {order_number}
-    
-    Dear {customer.name},
-    
-    Thank you for your order! Here are your order details:
-    
-    Order Number: {order_number}
-    Total Amount: ₹{total_price}
-    
-    Items:
-    {chr(10).join([f"- {item.title} x{item.quantity} = ₹{item.price * item.quantity}" for item in items])}
-    
-    Shipping Address:
-    {customer.addressLine1}
-    {customer.addressLine2 or ''}
-    {customer.city}, {customer.state} {customer.pinCode}
-    
-    Payment Instructions:
-    1. Scan the QR code below or click the payment link
-    2. Complete the UPI payment
-    3. Reply to this email to confirm payment
-    
-    Payment Link: {create_upi_payment_link(order_number, total_price)}
-    
-    Best regards,
-    String Art Team
-    """
-    
-    logger.info(f"Email content prepared for {customer.email}")
+    """Send confirmation email to customer using Google SMTP with Jinja2 template"""
+    try:
+        # Get email credentials from environment
+        gmail_user = os.getenv("GMAIL_USER")
+        gmail_password = os.getenv("GMAIL_APP_PASSWORD")
+        
+        if not gmail_user or not gmail_password:
+            logger.error("GMAIL_USER or GMAIL_APP_PASSWORD not set in environment variables")
+            return
+        
+        # Create UPI payment link
+        payment_link = create_upi_payment_link(order_number, total_price)
+        
+        # Build payment instructions URL with query params
+        payment_instructions_url = f"{PAYMENT_INSTRUCTIONS_LINK}?" + urlencode({
+            'amount': total_price,
+            'comment': f"Order {order_number}"
+        })
+        
+        # Load and render template
+        template = template_env.get_template("email_order_confirmation.html")
+        html_content = template.render(
+            customer=customer,
+            order_number=order_number,
+            items=items,
+            total_price=total_price,
+            payment_instructions_url=payment_instructions_url,
+            upi_id=UPI_ID
+        )
+        
+        # Save HTML content to file for debugging
+        try:
+            with open("email.html", "w", encoding="utf-8") as f:
+                f.write(html_content)
+            logger.info(f"Email HTML saved to email.html for order {order_number}")
+        except Exception as e:
+            logger.error(f"Failed to save email HTML: {e}")
+        
+        # Create plain text content
+        text_content = f"""
+        Order Confirmation - {order_number}
+        
+        Dear {customer.name},
+        
+        Thank you for your order! Here are your order details:
+        
+        Order Number: {order_number}
+        Total Amount: ₹{total_price}
+        
+        Items:
+        {chr(10).join([f'- {item.title} x{item.quantity} = ₹{item.price * item.quantity}' for item in items])}
+        
+        Shipping Address:
+        {customer.addressLine1}
+        {customer.addressLine2 or ''}
+        {customer.city}, {customer.state} {customer.pinCode}
+        
+        Payment Instructions:
+        1. Scan the QR code in the HTML version or click the payment link
+        2. Complete the UPI payment
+        3. Reply to this email to confirm payment
+        
+        Payment Link: {payment_link}
+        
+        Best regards,
+        String Art Studio
+        """
+        
+        # Create message
+        msg = MIMEMultipart('alternative')
+        msg['Subject'] = f"Order Confirmation - {order_number}"
+        msg['From'] = formataddr(("String Art Studio", GMAIL_FROM_ADDRESS))
+        msg['To'] = customer.email
+        
+        # Attach both HTML and plain text versions
+        msg.attach(MIMEText(text_content, 'plain'))
+        msg.attach(MIMEText(html_content, 'html'))
+        
+        # Send email using Google SMTP
+        with smtplib.SMTP_SSL('smtp.gmail.com', 465) as server:
+            server.login(gmail_user, gmail_password)
+            server.send_message(msg)
+        
+        logger.info(f"Confirmation email sent successfully to {customer.email} for order {order_number}")
+        
+    except smtplib.SMTPAuthenticationError:
+        logger.error(f"SMTP authentication failed for {gmail_user}. Check GMAIL_APP_PASSWORD.")
+    except smtplib.SMTPRecipientsRefused as e:
+        logger.error(f"Email recipient refused: {customer.email}. Error: {e}")
+    except smtplib.SMTPServerDisconnected:
+        logger.error("SMTP server disconnected unexpectedly")
+    except smtplib.SMTPException as e:
+        logger.error(f"SMTP error occurred: {e}")
+    except Exception as e:
+        logger.error(f"Unexpected error sending email to {customer.email}: {e}")
+
+def generate_qr_code_base64(data: str, size: int = 200) -> str:
+    """Generate QR code and return as base64 string"""
+    try:
+        qr = qrcode.QRCode(version=1, box_size=10, border=5)
+        qr.add_data(data)
+        qr.make(fit=True)
+        
+        img = qr.make_image(fill_color="black", back_color="white")
+        
+        # Convert to base64
+        buffer = io.BytesIO()
+        img.save(buffer, format='PNG')
+        img_str = base64.b64encode(buffer.getvalue()).decode()
+        
+        return f"data:image/png;base64,{img_str}"
+    except Exception as e:
+        logger.error(f"Error generating QR code: {e}")
+        return ""
 
 @app.post("/api/checkout", response_model=CheckoutResponse)
 async def checkout(request: CheckoutRequest, background_tasks: BackgroundTasks):
@@ -167,7 +295,7 @@ async def checkout(request: CheckoutRequest, background_tasks: BackgroundTasks):
     try:
         logger.info(f"Processing checkout for customer: {request.customer.email}")
         
-        # Generate order number
+        # Generate order number (sequential)
         order_number = generate_order_number()
         
         # Create UPI payment link
@@ -183,6 +311,12 @@ async def checkout(request: CheckoutRequest, background_tasks: BackgroundTasks):
             "createdAt": datetime.now().isoformat(),
             "paymentLink": payment_link
         }
+        
+        # Save order to file
+        filename = save_order_to_file(order_data)
+        order_data["filename"] = filename
+        
+        # Also keep in memory for quick access
         orders_db[order_number] = order_data
         
         # Send confirmation email in background
@@ -194,7 +328,7 @@ async def checkout(request: CheckoutRequest, background_tasks: BackgroundTasks):
             request.totalPrice
         )
         
-        logger.info(f"Order {order_number} created successfully")
+        logger.info(f"Order {order_number} created successfully and saved to {filename}")
         
         return CheckoutResponse(
             success=True,
