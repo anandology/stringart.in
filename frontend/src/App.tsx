@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Header from './components/Header';
 import HeroSection from './components/HeroSection';
 import GettingStartedVideo from './components/GettingStartedVideo';
@@ -88,6 +88,11 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/get-started" element={<LandingPageRoute />} />
           <Route path="/get-started/:productId" element={<ProductLandingRoute />} />
+          <Route path="/s/:productId" element={<ProductLandingRoute />} />
+          <Route path="/go" element={<Navigate to="/get-started/starter-kit" replace />} />
+          <Route path="/go/1" element={<Navigate to="/get-started/starter-kit" replace />} />
+          <Route path="/go/2" element={<Navigate to="/get-started/advanced-kit" replace />} />
+          <Route path="/go/3" element={<Navigate to="/get-started/rings-kit" replace />} />
           <Route path="/gallery" element={<GalleryPage gallery={appData.gallery} />} />
           <Route path="/gallery/:id" element={<GalleryDetailPage gallery={appData.gallery} />} />
           <Route path="/products" element={<ProductsRoute />} />
