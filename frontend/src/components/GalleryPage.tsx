@@ -1,13 +1,10 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import Header from './Header';
 import Footer from './Footer';
+import type { Gallery } from '../types';
 
 interface GalleryPageProps {
-    gallery: {
-        entries: { [id: string]: any };
-        ids: string[];
-    };
+    gallery: Gallery;
 }
 
 const GalleryPage: React.FC<GalleryPageProps> = ({ gallery }) => {

@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { ArrowLeft } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useCart } from './CartContext';
+import { useCart } from '../hooks/useCart';
 import { checkoutApi } from '../services/api';
 
 interface CheckoutFormData {

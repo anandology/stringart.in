@@ -1,4 +1,3 @@
-import React from 'react';
 // import GalleryTeaser from './GalleryTeaser';
 import { Link } from 'react-router-dom';
 
@@ -17,7 +16,7 @@ const GalleryGrid: React.FC<GalleryGridProps> = ({ items, maxItems }) => {
     const displayItems = maxItems ? items.slice(0, maxItems) : items;
     return (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-            {displayItems.map((item: any, idx: number) => (
+            {displayItems.map((item) => (
                 <Link key={item.id} to={`/gallery/${item.id}`} className="block group">
                     <div className="aspect-square w-full bg-white rounded shadow flex items-center justify-center overflow-hidden">
                         <img

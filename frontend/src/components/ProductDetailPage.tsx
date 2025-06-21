@@ -1,22 +1,14 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Plus, Minus } from 'lucide-react';
 import GalleryGrid from './GalleryGrid';
-import { useCart } from './CartContext';
+import { useCart } from '../hooks/useCart';
+import type { Product, Gallery } from '../types';
 
 interface ProductDetailPageProps {
-  products: any[];
-  gallery: {
-    entries: { [id: string]: any };
-  };
+  products: Product[];
+  gallery: Gallery;
 }
-
-// Slugify function for gallery titles
-const slugify = (str: string) =>
-  str
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/(^-|-$)+/g, '');
 
 const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ products, gallery }) => {
   const { id } = useParams<{ id: string }>();
@@ -58,7 +50,7 @@ const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ products, gallery
     }
   };
 
-  const kitGallery = Object.values(gallery.entries).filter((item: any) => item.kit === product.id);
+  const kitGallery = Object.values(gallery.entries).filter((item) => item.kit === product.id);
   const images = product.images || [];
   const includes = product.includes || [];
 

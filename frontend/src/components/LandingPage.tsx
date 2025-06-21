@@ -1,14 +1,12 @@
-import React from 'react';
 import { useParams, Link } from 'react-router-dom';
+import type { Product, Gallery } from '../types';
 
 interface LandingPageProps {
-    products?: any[];
-    gallery?: {
-        entries: { [id: string]: any };
-    };
+    products?: Product[];
+    gallery?: Gallery;
 }
 
-const LandingPage: React.FC<LandingPageProps> = ({ products = [], gallery = { entries: {} } }) => {
+const LandingPage: React.FC<LandingPageProps> = ({ products = [], gallery = { entries: {}, featured: [], ids: [] } }) => {
     const { productId } = useParams<{ productId: string }>();
 
     // Find the product based on the URL parameter
@@ -28,7 +26,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ products = [], gallery = { en
     }
 
     // Filter gallery items that were made with this specific kit
-    const kitGallery = Object.values(gallery.entries).filter((item: any) => item.kit === product.id);
+    const kitGallery = Object.values(gallery.entries).filter((item) => item.kit === product.id);
 
     // Take up to 4 items for the grid
     const displayItems = kitGallery.slice(0, 4);
@@ -75,7 +73,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ products = [], gallery = { en
                     {displayItems.length > 0 ? (
                         <>
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6 w-full">
-                                {displayItems.map((item: any) => (
+                                {displayItems.map((item) => (
                                     <Link
                                         key={item.id}
                                         to={`/gallery/${item.id}`}

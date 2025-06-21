@@ -53,7 +53,7 @@ const App = () => {
   const [appData, setAppData] = useState<any | null>(null);
 
   useEffect(() => {
-    fetch('/src/data/app.json')
+    fetch('/app.json')
       .then(res => res.json())
       .then(setAppData);
   }, []);

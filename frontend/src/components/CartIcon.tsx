@@ -1,7 +1,6 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import { ShoppingCart } from 'lucide-react';
-import { useCart } from './CartContext';
+import { useCart } from '../hooks/useCart';
 
 const CartIcon: React.FC = () => {
     const { state } = useCart();

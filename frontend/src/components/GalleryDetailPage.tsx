@@ -1,17 +1,15 @@
-import React from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import Header from './Header';
 import Footer from './Footer';
+import type { Gallery } from '../types';
 
 interface GalleryDetailPageProps {
-    gallery: {
-        entries: { [id: string]: any };
-    };
+    gallery: Gallery;
 }
 
 const GalleryDetailPage: React.FC<GalleryDetailPageProps> = ({ gallery }) => {
     const { id } = useParams<{ id: string }>();
-    const item = gallery.entries[id];
+    const item = id ? gallery.entries[id] : undefined;
     const navigate = useNavigate();
 
     if (!item) {

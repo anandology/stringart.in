@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import { QRCodeSVG } from 'qrcode.react';
 import { ArrowLeft, ExternalLink, CheckCircle, User, MapPin, Package, ChevronDown, ChevronUp } from 'lucide-react';

@@ -1,5 +1,4 @@
-import React from 'react';
-import { Users, Star } from 'lucide-react';
+import { Star } from 'lucide-react';
 
 const testimonials = [
   {

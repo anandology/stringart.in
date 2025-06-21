@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
@@ -102,8 +102,8 @@ const HeroSection: React.FC<HeroSectionProps> = ({ heroImages = [] }) => {
                       key={index}
                       onClick={() => goToSlide(index)}
                       className={`w-2 h-2 rounded-full transition-colors ${index === currentIndex
-                          ? 'bg-orange-600'
-                          : 'bg-orange-200 hover:bg-orange-300'
+                        ? 'bg-orange-600'
+                        : 'bg-orange-200 hover:bg-orange-300'
                         }`}
                       aria-label={`Go to image ${index + 1}`}
                     />

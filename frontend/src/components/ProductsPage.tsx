@@ -1,14 +1,14 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import { Plus, Minus } from 'lucide-react';
-import { useCart } from './CartContext';
+import { useCart } from '../hooks/useCart';
 import productsData from '../data/app.json';
+import type { Product } from '../types';
 
 const ProductsPage = () => {
     const { products } = productsData;
     const { addItem, updateQuantity, state } = useCart();
 
-    const handleAddToCart = (product: any) => {
+    const handleAddToCart = (product: Product) => {
         addItem({
             id: product.id,
             title: product.title,

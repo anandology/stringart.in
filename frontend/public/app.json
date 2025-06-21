@@ -185,6 +185,9 @@
       "/images/8-pointed-star.png",
       "/images/boat.png",
       "/images/sunflower.png"
-    ]
+    ],
+    "video_url": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    "video_title": "Getting Started with String Art",
+    "video_duration": "5 min"
   }
 }

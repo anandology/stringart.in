@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import CartIcon from './CartIcon';
@@ -17,7 +17,7 @@ const Header = () => {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-8">
             <Link to="/" className="text-gray-700 hover:text-orange-600 font-medium">Home</Link>
-            <a href="#" className="text-gray-700 hover:text-orange-600 font-medium">About</a>
+            <Link to="/about" className="text-gray-700 hover:text-orange-600 font-medium">About</Link>
             <Link to="/gallery" className="text-gray-700 hover:text-orange-600 font-medium">Gallery</Link>
             <Link to="/products" className="text-gray-700 hover:text-orange-600 font-medium">Products</Link>
           </nav>
@@ -40,7 +40,7 @@ const Header = () => {
           <div className="md:hidden border-t border-orange-100 py-4">
             <nav className="flex flex-col space-y-4">
               <Link to="/" className="text-gray-700 hover:text-orange-600 font-medium px-4 py-2" onClick={() => setIsMenuOpen(false)}>Home</Link>
-              <a href="#" className="text-gray-700 hover:text-orange-600 font-medium px-4 py-2">About</a>
+              <Link to="/about" className="text-gray-700 hover:text-orange-600 font-medium px-4 py-2" onClick={() => setIsMenuOpen(false)}>About</Link>
               <Link to="/gallery" className="text-gray-700 hover:text-orange-600 font-medium px-4 py-2" onClick={() => setIsMenuOpen(false)}>Gallery</Link>
               <Link to="/products" className="text-gray-700 hover:text-orange-600 font-medium px-4 py-2" onClick={() => setIsMenuOpen(false)}>Products</Link>
             </nav>

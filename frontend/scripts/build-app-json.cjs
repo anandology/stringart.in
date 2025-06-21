@@ -25,12 +25,13 @@ async function readMarkdownFile(filePath) {
 
 async function main() {
     const dataDir = path.join(__dirname, '../src/data');
+    const publicDir = path.join(__dirname, "../public")
     const productsYmlPath = path.join(dataDir, 'products.yml');
     const productsDir = path.join(dataDir, 'products');
     const galleryYmlPath = path.join(dataDir, 'gallery.yml');
     const galleryDir = path.join(dataDir, 'gallery');
     const homeYmlPath = path.join(dataDir, 'home.yml');
-    const appJsonPath = path.join(dataDir, 'app.json');
+    const appJsonPath = path.join(publicDir, 'app.json');
 
     // Read products.yml for product keys
     const productKeys = await readYAML(productsYmlPath);

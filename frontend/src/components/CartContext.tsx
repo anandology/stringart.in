@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useReducer, useEffect } from 'react';
+import React, { createContext, useReducer, useEffect } from 'react';
 
 interface CartItem {
     id: string;
@@ -27,6 +27,8 @@ const CartContext = createContext<{
     removeItem: (id: string) => void;
     clearCart: () => void;
 } | null>(null);
+
+export { CartContext };
 
 const cartReducer = (state: CartState, action: CartAction): CartState => {
     switch (action.type) {
@@ -130,12 +132,4 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
             {children}
         </CartContext.Provider>
     );
-};
-
-export const useCart = () => {
-    const context = useContext(CartContext);
-    if (!context) {
-        throw new Error('useCart must be used within a CartProvider');
-    }
-    return context;
 }; 

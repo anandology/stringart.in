@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Trash2, Plus, Minus, ArrowLeft } from 'lucide-react';
-import { useCart } from './CartContext';
+import { useCart } from '../hooks/useCart';
 
 const CartPage: React.FC = () => {
     const { state, updateQuantity, removeItem, clearCart } = useCart();
