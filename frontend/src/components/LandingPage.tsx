@@ -1,6 +1,38 @@
 import React from 'react';
+import { useParams, Link } from 'react-router-dom';
 
-const LandingPage = () => {
+interface LandingPageProps {
+    products?: any[];
+    gallery?: {
+        entries: { [id: string]: any };
+    };
+}
+
+const LandingPage: React.FC<LandingPageProps> = ({ products = [], gallery = { entries: {} } }) => {
+    const { productId } = useParams<{ productId: string }>();
+
+    // Find the product based on the URL parameter
+    const product = products.find(p => p.id === productId) || products[0];
+
+    if (!product) {
+        return (
+            <div className="min-h-screen flex items-center justify-center">
+                <div className="text-center">
+                    <h2 className="text-2xl font-bold text-gray-800 mb-4">Product Not Found</h2>
+                    <Link to="/products" className="text-orange-600 hover:underline">
+                        Browse all products
+                    </Link>
+                </div>
+            </div>
+        );
+    }
+
+    // Filter gallery items that were made with this specific kit
+    const kitGallery = Object.values(gallery.entries).filter((item: any) => item.kit === product.id);
+
+    // Take up to 4 items for the grid
+    const displayItems = kitGallery.slice(0, 4);
+
     return (
         <main className="bg-gradient-to-br from-orange-50 to-yellow-50 min-h-screen py-10">
             <div className="max-w-2xl mx-auto px-4 flex flex-col gap-8">
@@ -9,16 +41,17 @@ const LandingPage = () => {
                     <div className="absolute inset-0 bg-white opacity-40 pointer-events-none" style={{ zIndex: 0 }}></div>
                     <div className="w-full flex flex-col md:flex-row items-center justify-center gap-8" style={{ position: 'relative', zIndex: 1 }}>
                         <div className="flex-shrink-0 flex items-center justify-center">
-                            <img src="/stringart-logo.png" alt="String Art Kit" className="w-40 h-40 object-contain" />
+                            <img src={product.images?.[0] || "/stringart-logo.png"} alt={product.title} className="w-40 h-40 object-contain" />
                         </div>
                         <div className="flex flex-col items-center md:items-start text-center md:text-left">
                             <h1 className="leading-tight">
                                 <span className="block text-5xl sm:text-6xl font-extrabold text-orange-600">String Art</span>
-                                <span className="block text-5xl sm:text-6xl font-normal text-gray-700">Starter Kit</span>
+                                <span className="block text-5xl sm:text-6xl font-normal text-gray-700">{product.title.replace('String Art ', '')}</span>
                             </h1>
                         </div>
                     </div>
                 </section>
+
                 <section className="bg-white rounded-2xl shadow-xl p-8 flex flex-col items-center mt-0">
                     <h2 className="text-2xl font-semibold text-gray-900 mb-4 text-center">Get Started</h2>
                     <p className="text-lg text-gray-700 mb-4 text-center">
@@ -36,23 +69,49 @@ const LandingPage = () => {
                         ></iframe>
                     </div>
                 </section>
+
                 <section className="bg-white rounded-2xl shadow-xl p-8 flex flex-col items-center mt-0">
                     <h2 className="text-2xl font-semibold text-gray-900 mb-4 text-center">Get Inspired</h2>
-                    <div className="grid grid-cols-3 gap-4 mb-6 w-full">
-                        <img src="/stringart-logo.png" alt="Design 1" className="w-full aspect-square object-contain" />
-                        <img src="/images/boat.png" alt="Design 2" className="w-full aspect-square object-contain" />
-                        <img src="/images/dewdrop.png" alt="Design 3" className="w-full aspect-square object-contain" />
-                        <img src="/images/kichimu-by-varsha.png" alt="Design 4" className="w-full aspect-square object-contain" />
-                        <img src="/images/12point-mystic-rose-by-vihari.png" alt="Design 5" className="w-full aspect-square object-contain" />
-                        <img src="/images/square.png" alt="Design 6" className="w-full aspect-square object-contain" />
-                    </div>
-                    <a href="/gallery" className="bg-orange-600 text-white px-6 py-3 rounded-lg font-semibold text-lg text-center hover:bg-orange-700 transition-colors">See More Designs</a>
+                    {displayItems.length > 0 ? (
+                        <>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6 w-full">
+                                {displayItems.map((item: any) => (
+                                    <Link
+                                        key={item.id}
+                                        to={`/gallery/${item.id}`}
+                                        className="block hover:opacity-80 transition-opacity"
+                                    >
+                                        <img
+                                            src={item.image}
+                                            alt={item.title}
+                                            className="w-full aspect-square object-contain rounded-lg"
+                                        />
+                                    </Link>
+                                ))}
+                            </div>
+                            <Link to="/gallery" className="bg-orange-600 text-white px-6 py-3 rounded-lg font-semibold text-lg text-center hover:bg-orange-700 transition-colors">See More Designs</Link>
+                        </>
+                    ) : (
+                        <div className="text-center">
+                            <p className="text-gray-600 mb-4">No designs available yet for this kit.</p>
+                            <Link to="/gallery" className="bg-orange-600 text-white px-6 py-3 rounded-lg font-semibold text-lg text-center hover:bg-orange-700 transition-colors">Browse All Designs</Link>
+                        </div>
+                    )}
                 </section>
+
                 <section className="bg-white rounded-2xl shadow p-6 flex flex-col items-center">
                     <h2 className="text-xl font-semibold text-gray-900 mb-2">Share Your Creations!</h2>
                     <p className="text-gray-700 mb-2 text-center">Tag your art with <span className="font-bold text-orange-600">#StringArtStudio</span> on Instagram or join our community to inspire others.</p>
                     {/* Replace with actual community link if available */}
                     <a href="#" className="text-orange-600 hover:underline font-medium">Join our WhatsApp group</a>
+                </section>
+
+                <section className="bg-white rounded-2xl shadow p-6 flex flex-col items-center">
+                    <h2 className="text-xl font-semibold text-gray-900 mb-2">Explore More</h2>
+                    <p className="text-gray-700 mb-4 text-center">Ready to discover more string art kits and designs?</p>
+                    <Link to="/" className="bg-orange-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-orange-700 transition-colors">
+                        Visit Our Website
+                    </Link>
                 </section>
             </div>
         </main>

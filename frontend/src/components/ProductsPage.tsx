@@ -49,6 +49,15 @@ const ProductsPage = () => {
                                     <h3 className="text-xl font-semibold text-orange-600 mb-2">{product.title}</h3>
                                     <p className="text-gray-600 mb-4 flex-1">{product.short_description}</p>
                                 </Link>
+                                <div className="mb-4">
+                                    <Link
+                                        to={`/get-started/${product.id}`}
+                                        className="text-sm text-orange-600 hover:text-orange-700 font-medium"
+                                        onClick={(e) => e.stopPropagation()}
+                                    >
+                                        📹 Watch tutorial
+                                    </Link>
+                                </div>
                                 <div className="flex items-center justify-between mt-auto">
                                     <span className="text-lg font-bold text-orange-600">₹{product.price}</span>
                                     {currentQuantity === 0 ? (

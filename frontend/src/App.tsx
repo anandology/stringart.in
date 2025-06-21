@@ -73,12 +73,21 @@ const App = () => {
     </>
   );
 
+  const LandingPageRoute = () => (
+    <LandingPage products={appData.products} gallery={appData.gallery} />
+  );
+
+  const ProductLandingRoute = () => (
+    <LandingPage products={appData.products} gallery={appData.gallery} />
+  );
+
   return (
     <CartProvider>
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/get-started" element={<LandingPage />} />
+          <Route path="/get-started" element={<LandingPageRoute />} />
+          <Route path="/get-started/:productId" element={<ProductLandingRoute />} />
           <Route path="/gallery" element={<GalleryPage gallery={appData.gallery} />} />
           <Route path="/gallery/:id" element={<GalleryDetailPage gallery={appData.gallery} />} />
           <Route path="/products" element={<ProductsRoute />} />

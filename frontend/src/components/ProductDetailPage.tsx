@@ -121,16 +121,24 @@ const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ products, gallery
             <div className="mb-6">
               {currentQuantity === 0 ? (
                 // Show "Add to Cart" button when item is not in cart
-                <div className="flex gap-4">
-                  <button className="bg-orange-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-orange-700 transition-colors shadow">
-                    Buy Now
-                  </button>
-                  <button
-                    onClick={handleAddToCart}
-                    className="bg-orange-100 text-orange-700 px-6 py-2 rounded-lg font-semibold hover:bg-orange-200 transition-colors shadow relative"
+                <div className="space-y-4">
+                  <div className="flex gap-4">
+                    <button className="bg-orange-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-orange-700 transition-colors shadow">
+                      Buy Now
+                    </button>
+                    <button
+                      onClick={handleAddToCart}
+                      className="bg-orange-100 text-orange-700 px-6 py-2 rounded-lg font-semibold hover:bg-orange-200 transition-colors shadow relative"
+                    >
+                      {showAddedMessage ? 'Added to Cart!' : 'Add to Cart'}
+                    </button>
+                  </div>
+                  <Link
+                    to={`/get-started/${product.id}`}
+                    className="inline-flex items-center text-orange-600 hover:text-orange-700 font-medium text-sm"
                   >
-                    {showAddedMessage ? 'Added to Cart!' : 'Add to Cart'}
-                  </button>
+                    📹 Watch tutorial video
+                  </Link>
                 </div>
               ) : (
                 // Show quantity controls when item is in cart
@@ -158,6 +166,12 @@ const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ products, gallery
                       </button>
                     </div>
                   </div>
+                  <Link
+                    to={`/get-started/${product.id}`}
+                    className="inline-flex items-center text-orange-600 hover:text-orange-700 font-medium text-sm"
+                  >
+                    📹 Watch tutorial video
+                  </Link>
                 </div>
               )}
             </div>
