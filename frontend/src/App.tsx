@@ -22,14 +22,6 @@ import ShippingPage from './components/ShippingPage';
 import FAQPage from './components/FAQPage';
 import ContactPage from './components/ContactPage';
 
-const ProductsRoute = () => (
-  <>
-    <Header />
-    <ProductsPage />
-    <Footer />
-  </>
-);
-
 const CartRoute = () => (
   <>
     <Header />
@@ -58,7 +50,7 @@ const App = () => {
   const [appData, setAppData] = useState<AppData | null>(null);
 
   useEffect(() => {
-    fetch('/app.json')
+    fetch('/app.json?v2')
       .then(res => res.json())
       .then(setAppData);
   }, []);
@@ -79,6 +71,16 @@ const App = () => {
       <Footer />
     </>
   );
+
+  const ProductsRoute = () => (
+    <>
+      <Header />
+      <ProductsPage products={appData.products} />
+      <Footer />
+    </>
+  );
+
+
 
   const ProductDetailRoute = () => (
     <>

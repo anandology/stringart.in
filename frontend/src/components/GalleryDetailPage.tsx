@@ -36,7 +36,7 @@ const GalleryDetailPage: React.FC<GalleryDetailPageProps> = ({ gallery }) => {
                             />
                         </div>
                         <h1 className="text-2xl font-bold mb-2">{item.title}</h1>
-                        <div className="mb-2">{item.description_html || item.description}</div>
+                        <div className="mb-2" dangerouslySetInnerHTML={{ __html: item.description_html || "" }} />
                     </div>
                 </div>
             </main>
@@ -45,4 +45,4 @@ const GalleryDetailPage: React.FC<GalleryDetailPageProps> = ({ gallery }) => {
     );
 };
 
-export default GalleryDetailPage; 
+export default GalleryDetailPage;

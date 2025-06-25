@@ -64,6 +64,7 @@ async function main() {
         const galleryPath = path.join(galleryDir, id + '.md');
         try {
             const entry = await readMarkdownFile(galleryPath);
+            entry["id"] = id
             galleryEntries[id] = entry;
         } catch (err) {
             console.error(`Error reading gallery file for id '${id}':`, err.message);
@@ -95,4 +96,4 @@ async function main() {
 main().catch(err => {
     console.error(err);
     process.exit(1);
-}); 
+});

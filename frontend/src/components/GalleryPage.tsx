@@ -10,7 +10,7 @@ interface GalleryPageProps {
 const GalleryPage: React.FC<GalleryPageProps> = ({ gallery }) => {
     const { entries, ids } = gallery;
     return (
-        <>
+    <>
             <Header />
             <main className="bg-gradient-to-br from-orange-50 to-yellow-50 min-h-screen py-10">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -39,4 +39,4 @@ const GalleryPage: React.FC<GalleryPageProps> = ({ gallery }) => {
     );
 };
 
-export default GalleryPage; 
+export default GalleryPage;

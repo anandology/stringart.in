@@ -236,4 +236,4 @@ const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ products, gallery
   );
 };
 
-export default ProductDetailPage; 
+export default ProductDetailPage;

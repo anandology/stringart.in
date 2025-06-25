@@ -4,21 +4,21 @@
       "id": "starter-kit",
       "title": "String Art Starter Kit",
       "price": 500,
-      "short_description": "Everything you need to create your first string art masterpiece.  Kids friendly. \n",
+      "short_description": "Everything you need to create your first string art masterpiece. Kids friendly.\n",
       "images": [
         "/stringart-logo.png",
         "/images/kichimu.png"
       ],
       "includes": [
-        "20 precision laser-cut templates out of think paper",
-        "4 rolls of colorful thread",
+        "20 precision laser-cut templates for beginners",
+        "4 thread rolls of assorted colors",
         "stickers to keep thread in place"
       ],
       "similar_products": [
         "advanced-kit",
         "rings-kit"
       ],
-      "description_html": "<p>Long description of starter kit.</p>\n"
+      "description_html": "<p>The String Art Starter kit contains everything you need to get started with creating beautiful patterns with string art.</p>\n<p>It contains 20 pieces of string art temples starting from very small to big.</p>\n"
     },
     {
       "id": "advanced-kit",
@@ -30,17 +30,17 @@
         "/images/products/advanced-kit-2.jpg"
       ],
       "includes": [
-        "20 precision laser-cut templates out of think paper",
+        "10 precision laser-cut templates for advanced users",
         "4 rolls of colorful thread",
         "stickers to keep thread in place"
       ],
-      "description_html": "<p>Long description.</p>\n"
+      "description_html": "<p>The String Art advanced kit contains 10 carefully selected precision cut templates to make stunning creations. This kit is for advanced users and contains bigger templates.</p>\n<p>Unlike the starter kit, where the string art can be made just by looping a thread, many of the templates in this kit require working with a need as the some of the holes are in the center of the piece rather than at the periphery. Because of that it usualy takes more effort and takes longer to work with templates in this kit. Needless to say, the final output would be so wonderful that it is all worth the effort.</p>\n"
     },
     {
       "id": "rings-kit",
       "title": "String Art Rings Kit",
       "price": 500,
-      "short_description": "Precision cut wooden rings and embriodary threads for creating beautiful string art. \n",
+      "short_description": "Precision cut wooden rings and embriodary threads for creating beautiful string art.\n",
       "images": [
         "/images/rings-double-loop.png"
       ],
@@ -51,7 +51,7 @@
       "similar_products": [
         "starter-kit"
       ],
-      "description_html": "<p>Long description</p>\n"
+      "description_html": "<p>The String Art ring kit is made by laser cutting MDF (a kind of engineered wood) into rings with groves to hold the thread. This kit uses beautiful emboridary threads, which are quite thick compared to the ones in the starter kit.</p>\n"
     }
   ],
   "gallery": {
@@ -64,7 +64,7 @@
         "date": "2024-06-01",
         "kit": "starter-kit",
         "template": "C30",
-        "description_html": "<p>Description for Boat.</p>\n"
+        "description_html": ""
       },
       "square": {
         "id": "square",
@@ -73,18 +73,18 @@
         "author": "Author Name",
         "date": "2024-06-01",
         "kit": "starter-kit",
-        "template": "C30",
-        "description_html": "<p>Description for Square.</p>\n"
+        "template": "P4",
+        "description_html": ""
       },
       "12point-mystic-rose": {
         "id": "12point-mystic-rose",
         "image": "/images/12point-mystic-rose.png",
-        "title": "12point Mystic Rose",
+        "title": "12 Point Mystic Rose",
         "author": "Author Name",
         "date": "2024-06-01",
         "kit": "starter-kit",
-        "template": "C30",
-        "description_html": "<p>Description for 12point Mystic Rose.</p>\n"
+        "template": "C12",
+        "description_html": "<p>This intricate pattern is made with very simple rules. Every point is connect to every other point.</p>\n<p>It is easier if you label the points from 1 to 12 and start connecting.</p>\n<p>You go this way:</p>\n<pre><code>1 to 2 - back to 1\n1 to 3 - back to 1\n...\n1 to 12 - back to 2\n2 to 3 - back to 2\n2 to 4 - back to 2\n...\n</code></pre>\n<p>Notice that when you start at point 2, you don't connect it to point 1, which is already connected when you connected point 1 with every other point. If you miss that you may get some double lines, as it is the case with this design.</p>\n<p>This design of connecting every point to every other point is called a <code>Mystic Rose</code>. You could try the same pattern with circular templates of any number of holes.</p>\n"
       },
       "dewdrop": {
         "id": "dewdrop",
@@ -158,6 +158,24 @@
         "kit": "advanced-kit",
         "template": "C30",
         "description_html": "<p>The flower is made out of parabolas generated by string art.\nEach petal is smade of two parabolas.</p>\n"
+      },
+      "sunrise": {
+        "id": "sunrise",
+        "image": "/images/sunrise.png",
+        "title": "Sunrise",
+        "date": "2024-06-01",
+        "kit": "starter-kit",
+        "template": "C24",
+        "description_html": "<p>This interesting pattern is made by connecting three bottom points (12, 14 and 16 in this case) with every other point. Using a different, but related color for the center one enhances the effect.</p>\n"
+      },
+      "dewdrop-radial": {
+        "image": "/images/dewdrop-radial.png",
+        "title": "Dewdrop with Radial",
+        "date": "2024-06-21",
+        "kit": "starter-kit",
+        "template": "C24",
+        "description_html": "<p>This design is a combination of two patterns - the dew drop and the radial.</p>\n",
+        "id": "dewdrop-radial"
       }
     },
     "ids": [
@@ -170,7 +188,9 @@
       "sunflower",
       "four-circles",
       "8-pointed-star",
-      "flower6"
+      "flower6",
+      "sunrise",
+      "dewdrop-radial"
     ],
     "featured": [
       "three-circles",
@@ -180,11 +200,11 @@
   },
   "home": {
     "hero_images": [
-      "/images/three-circles.png",
       "/images/four-circles.png",
+      "/images/dewdrop-radial.png",
       "/images/8-pointed-star.png",
-      "/images/boat.png",
-      "/images/sunflower.png"
+      "/images/three-circles.png",
+      "/images/boat.png"
     ],
     "video_url": "https://www.youtube.com/embed/VyvIQM0nCbI",
     "video_title": "Getting Started with String Art",

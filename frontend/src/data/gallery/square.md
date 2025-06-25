@@ -5,6 +5,5 @@ title: "Square"
 author: "Author Name"
 date: "2024-06-01"
 kit: "starter-kit"
-template: "C30"
+template: "P4"
 ---
-Description for Square. 
