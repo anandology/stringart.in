@@ -30,6 +30,8 @@ export interface HomeData {
     video_url?: string;
     video_title?: string;
     video_duration?: string;
+    instagram_url?: string;
+    contact_email?: string;
 }
 
 export interface AppData {

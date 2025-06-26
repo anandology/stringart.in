@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Header from './components/Header';
 import HeroSection from './components/HeroSection';
@@ -16,7 +16,7 @@ import CheckoutForm from './components/CheckoutForm';
 import PaymentConfirmationPage from './components/PaymentConfirmationPage';
 import PaymentInstructionsPage from './components/PaymentInstructionsPage';
 import { CartProvider } from './components/CartContext';
-import type { AppData } from './types';
+import { AppDataProvider, useAppData } from './components/AppDataContext';
 import AboutPage from './components/AboutPage';
 import ShippingPage from './components/ShippingPage';
 import FAQPage from './components/FAQPage';
@@ -46,17 +46,12 @@ const PaymentConfirmationRoute = () => (
   </>
 );
 
-const App = () => {
-  const [appData, setAppData] = useState<AppData | null>(null);
+const AppRoutes = () => {
+  const { appData, loading } = useAppData();
 
-  useEffect(() => {
-    const hash = import.meta.env.VITE_APP_JSON_HASH || '';
-    fetch(`/app.json?v=${hash}`)
-      .then(res => res.json())
-      .then(setAppData);
-  }, []);
-
-  if (!appData || !appData.gallery) return <div>Loading...</div>;
+  if (loading || !appData || !appData.gallery) {
+    return <div>Loading...</div>;
+  }
 
   const Home = () => (
     <>
@@ -81,8 +76,6 @@ const App = () => {
     </>
   );
 
-
-
   const ProductDetailRoute = () => (
     <>
       <Header />
@@ -100,32 +93,40 @@ const App = () => {
   );
 
   return (
-    <CartProvider>
-      <Router>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/get-started" element={<LandingPageRoute />} />
-          <Route path="/get-started/:productId" element={<ProductLandingRoute />} />
-          <Route path="/s/:productId" element={<ProductLandingRoute />} />
-          <Route path="/go" element={<Navigate to="/get-started/starter-kit" replace />} />
-          <Route path="/go/1" element={<Navigate to="/get-started/starter-kit" replace />} />
-          <Route path="/go/2" element={<Navigate to="/get-started/advanced-kit" replace />} />
-          <Route path="/go/3" element={<Navigate to="/get-started/rings-kit" replace />} />
-          <Route path="/gallery" element={<GalleryPage gallery={appData.gallery} />} />
-          <Route path="/gallery/:id" element={<GalleryDetailPage gallery={appData.gallery} />} />
-          <Route path="/products" element={<ProductsRoute />} />
-          <Route path="/products/:id" element={<ProductDetailRoute />} />
-          <Route path="/cart" element={<CartRoute />} />
-          <Route path="/checkout" element={<CheckoutRoute />} />
-          <Route path="/payment-confirmation" element={<PaymentConfirmationRoute />} />
-          <Route path="/payment-instructions" element={<PaymentInstructionsPage />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/shipping" element={<ShippingPage />} />
-          <Route path="/faq" element={<FAQPage />} />
-          <Route path="/contact" element={<ContactPage />} />
-        </Routes>
-      </Router>
-    </CartProvider>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/get-started" element={<LandingPageRoute />} />
+        <Route path="/get-started/:productId" element={<ProductLandingRoute />} />
+        <Route path="/s/:productId" element={<ProductLandingRoute />} />
+        <Route path="/go" element={<Navigate to="/get-started/starter-kit" replace />} />
+        <Route path="/go/1" element={<Navigate to="/get-started/starter-kit" replace />} />
+        <Route path="/go/2" element={<Navigate to="/get-started/advanced-kit" replace />} />
+        <Route path="/go/3" element={<Navigate to="/get-started/rings-kit" replace />} />
+        <Route path="/gallery" element={<GalleryPage gallery={appData.gallery} />} />
+        <Route path="/gallery/:id" element={<GalleryDetailPage gallery={appData.gallery} />} />
+        <Route path="/products" element={<ProductsRoute />} />
+        <Route path="/products/:id" element={<ProductDetailRoute />} />
+        <Route path="/cart" element={<CartRoute />} />
+        <Route path="/checkout" element={<CheckoutRoute />} />
+        <Route path="/payment-confirmation" element={<PaymentConfirmationRoute />} />
+        <Route path="/payment-instructions" element={<PaymentInstructionsPage />} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/shipping" element={<ShippingPage />} />
+        <Route path="/faq" element={<FAQPage />} />
+        <Route path="/contact" element={<ContactPage />} />
+      </Routes>
+    </Router>
+  );
+};
+
+const App = () => {
+  return (
+    <AppDataProvider>
+      <CartProvider>
+        <AppRoutes />
+      </CartProvider>
+    </AppDataProvider>
   );
 };
 
