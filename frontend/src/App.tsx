@@ -50,7 +50,8 @@ const App = () => {
   const [appData, setAppData] = useState<AppData | null>(null);
 
   useEffect(() => {
-    fetch('/app.json?v2')
+    const hash = import.meta.env.VITE_APP_JSON_HASH || '';
+    fetch(`/app.json?v=${hash}`)
       .then(res => res.json())
       .then(setAppData);
   }, []);
