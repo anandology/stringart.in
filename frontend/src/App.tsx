@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import Header from './components/Header';
 import HeroSection from './components/HeroSection';
 import GettingStartedVideo from './components/GettingStartedVideo';
-import TestimonialSection from './components/TestimonialSection';
+// import TestimonialSection from './components/TestimonialSection';
 import GalleryShowcase from './components/GalleryShowcase';
 import Footer from './components/Footer';
 import LandingPage from './components/LandingPage';
@@ -66,7 +66,7 @@ const App = () => {
         videoTitle={appData.home?.video_title}
         videoDuration={appData.home?.video_duration}
       />
-      <TestimonialSection />
+      {/* <TestimonialSection /> */}
       <GalleryShowcase gallery={appData.gallery} />
       <Footer />
     </>
